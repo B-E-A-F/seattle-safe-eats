@@ -4,6 +4,14 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  javascript-time-ago:
+    specifier: ^2.5.10
+    version: 2.5.10
+  underscore:
+    specifier: ^1.13.6
+    version: 1.13.6
+
 devDependencies:
   '@sveltejs/adapter-auto':
     specifier: ^3.0.0
@@ -17,6 +25,9 @@ devDependencies:
   '@types/eslint':
     specifier: ^8.56.0
     version: 8.56.10
+  '@types/underscore':
+    specifier: ^1.11.15
+    version: 1.11.15
   '@typescript-eslint/eslint-plugin':
     specifier: ^7.0.0
     version: 7.11.0(@typescript-eslint/parser@7.11.0)(eslint@8.57.0)(typescript@5.4.5)
@@ -640,6 +651,10 @@ packages:
 
   /@types/pug@2.0.10:
     resolution: {integrity: sha512-Sk/uYFOBAB7mb74XcpizmH0KOR2Pv3D2Hmrh1Dmy5BmK3MpdSa5kqZcg6EKBdklU0bFXX9gCfzvpnyUehrPIuA==}
+    dev: true
+
+  /@types/underscore@1.11.15:
+    resolution: {integrity: sha512-HP38xE+GuWGlbSRq9WrZkousaQ7dragtZCruBVMi0oX1migFZavZ3OROKHSkNp/9ouq82zrWtZpg18jFnVN96g==}
     dev: true
 
   /@typescript-eslint/eslint-plugin@7.11.0(@typescript-eslint/parser@7.11.0)(eslint@8.57.0)(typescript@5.4.5):
@@ -1577,6 +1592,12 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: true
 
+  /javascript-time-ago@2.5.10:
+    resolution: {integrity: sha512-EUxp4BP74QH8xiYHyeSHopx1XhMMJ9qEX4rcBdFtpVWmKRdzpxbNzz2GSbuekZr5wt0rmLehuyp0PE34EAJT9g==}
+    dependencies:
+      relative-time-format: 1.1.6
+    dev: false
+
   /jiti@1.21.0:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
@@ -2017,6 +2038,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /relative-time-format@1.1.6:
+    resolution: {integrity: sha512-aCv3juQw4hT1/P/OrVltKWLlp15eW1GRcwP1XdxHrPdZE9MtgqFpegjnTjLhi2m2WI9MT/hQQtE+tjEWG1hgkQ==}
+    dev: false
+
   /resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
@@ -2448,6 +2473,10 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
+
+  /underscore@1.13.6:
+    resolution: {integrity: sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==}
+    dev: false
 
   /update-browserslist-db@1.0.16(browserslist@4.23.0):
     resolution: {integrity: sha512-KVbTxlBYlckhF5wgfyZXTWnMn7MMZjMu9XG8bPlliUOP9ThaF4QnhP8qrjrH7DRzHfSk0oQv1wToW+iA5GajEQ==}
