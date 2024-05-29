@@ -1,6 +1,5 @@
 import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
-import _ from 'underscore';
 
 type Inspection = {
 	business_name: string;
@@ -10,6 +9,7 @@ type Inspection = {
 	score: string;
 	serial_num: string;
 	type: string;
+	violations: Violation[];
 };
 
 type Violation = {
@@ -29,7 +29,6 @@ export type Business = {
 	phone: string;
 	program_identifier: string;
 	inspections: Inspection[];
-	violations: Violation[];
 };
 
 type InspectionData = {
@@ -61,28 +60,42 @@ type Data = InspectionData[];
 
 function adaptDataToBusinesses(data: Data): Business {
 	const businessData = data[0]; // Grab the first business from the list
-	const inspections = _.uniq(data, false, (item) => item.inspection_date).map((item) => ({
-		business_name: item.inspection_business_name,
-		closed_business: item.inspection_closed_business,
-		date: item.inspection_date,
-		result: item.inspection_result,
-		score: item.inspection_score,
-		serial_num: item.inspection_serial_num,
-		type: item.inspection_type
-	}));
 
-	const violations: Violation[] = data
-		.map((item) => {
+	// Create a map to collect inspections with their respective violations
+	const inspectionsMap = new Map<string, Inspection>();
+
+	data.forEach((item) => {
+		// If the inspection date is not already in the map, create a new inspection entry
+		if (!inspectionsMap.has(item.inspection_date)) {
+			inspectionsMap.set(item.inspection_date, {
+				business_name: item.inspection_business_name,
+				closed_business: item.inspection_closed_business,
+				date: item.inspection_date,
+				result: item.inspection_result,
+				score: item.inspection_score,
+				serial_num: item.inspection_serial_num,
+				type: item.inspection_type,
+				violations: []
+			});
+		}
+
+		// If the violation points are greater than 0, add a violation to the respective inspection
+		if (parseInt(item.violation_points) > 0) {
 			const [record_id = '', description = ''] = (item.violation_description ?? '').split(' - ');
-			return {
+
+			const violation: Violation = {
 				description,
 				points: item.violation_points,
 				record_id,
 				type: item.violation_type,
 				date: item.inspection_date
 			};
-		})
-		.filter((violation) => parseInt(violation.points) > 0);
+			inspectionsMap.get(item.inspection_date)?.violations.push(violation);
+		}
+	});
+
+	// Convert the inspections map to an array
+	const inspections = Array.from(inspectionsMap.values());
 
 	return {
 		business_id: businessData.business_id,
@@ -92,8 +105,7 @@ function adaptDataToBusinesses(data: Data): Business {
 		name: businessData.name,
 		phone: businessData.phone,
 		program_identifier: businessData.program_identifier,
-		inspections,
-		violations
+		inspections
 	} as Business;
 }
 

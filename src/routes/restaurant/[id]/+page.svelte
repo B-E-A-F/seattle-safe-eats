@@ -7,7 +7,7 @@
 
 	/** @type {import('./$types').PageData} */
 	export let data;
-	console.log(data.businesses);
+	console.log(data.businesses.inspections);
 
 	function calculateInspectionResultClass(result: string) {
 		switch (result) {
@@ -42,9 +42,11 @@
 	<div class="flex flex-col flex-1 p-4">
 		<h2 class="text-2xl">{data.businesses.name}</h2>
 		<h2 class="text-2xl">{data.businesses.city}</h2>
-		<h2 class="text-2xl">{data.businesses.phone}</h2>
-		<div class="divider">Inspections</div>
-		<ul class="flex flex-col gap-2">
+		{#if data.businesses.phone}
+			<h2 class="text-2xl">{data.businesses.phone}</h2>
+		{/if}
+		<div class="divider md:max-w-80">Inspections</div>
+		<ul class="flex flex-col gap-6 md:max-w-80">
 			{#each data.businesses.inspections as inspection}
 				<li class="flex flex-col gap-2 p-2 border border-primary">
 					<div class="flex justify-between">
@@ -53,19 +55,39 @@
 						>
 						<span class="text-secondary">{new Date(inspection.date).toLocaleDateString()}</span>
 					</div>
+					{#if inspection.score > 0}
+						<span class="font-semibold">Score: {inspection.score}</span>
+					{/if}
 					<span>{inspection.type}</span>
-				</li>
-			{/each}
-		</ul>
-		<div class="divider">Violations</div>
-		<ul class="flex flex-col gap-2">
-			{#each data.businesses.violations as violation}
-				<li class="flex flex-col gap-2 p-2 border border-primary">
-					<div class="flex justify-between">
-						<span class="font-semibold">{violation.record_id}</span>
-						<span class="text-secondary">{new Date(violation.date).toLocaleDateString()}</span>
-					</div>
-					<span>{violation.description} <span class="text-error">(+{violation.points})</span></span>
+
+					{#if inspection.violations.length > 0}
+						<div class="collapse collapse-arrow bg-base-200">
+							<input type="checkbox" class="peer" />
+							<div class="collapse-title text-primary-content peer-checked:text-secondary-content">
+								Violations
+							</div>
+							<div
+								class="collapse-content text-primary-content peer-checked:text-secondary-content"
+							>
+								<ul>
+									{#each inspection.violations as violation, i}
+										<li class="flex flex-col gap-2">
+											<span class="font-semibold">{violation.record_id}</span>
+											<span>
+												{violation.description}
+												<span class="text-error">
+													(+{violation.points})
+												</span>
+											</span>
+											{#if i < inspection.violations.length - 1}
+												<div class="divider m-4" />
+											{/if}
+										</li>
+									{/each}
+								</ul>
+							</div>
+						</div>
+					{/if}
 				</li>
 			{/each}
 		</ul>

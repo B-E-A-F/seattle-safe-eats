@@ -2,6 +2,7 @@
 	let search = '';
 
 	function navigateSearch() {
+		if (search.length < 3) return;
 		window.location.href = `/search?q=${encodeURI(search)}`;
 	}
 </script>
