@@ -83,7 +83,7 @@
 						</div>
 					</div>
 					<div class="flex flex-col">
-						<a href={`/restaurant/${business.business_id}`}>{business.name}</a>
+						<a class="link" href={`/restaurant/${business.business_id}`}>{business.name}</a>
 						<span>{business.city}</span>
 						<span>{business.address}</span>
 					</div>

@@ -2,6 +2,24 @@ import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import _ from 'underscore';
 
+type Inspection = {
+	business_name: string;
+	closed_business: boolean;
+	date: string;
+	result: string;
+	score: string;
+	serial_num: string;
+	type: string;
+};
+
+type Violation = {
+	description: string;
+	points: string;
+	record_id: string;
+	type: string;
+	date: string;
+};
+
 export type Business = {
 	business_id: string;
 	address: string;
@@ -10,8 +28,8 @@ export type Business = {
 	name: string;
 	phone: string;
 	program_identifier: string;
-	last_inspection: string;
-	last_violation: string;
+	inspections: Inspection[];
+	violations: Violation[];
 };
 
 type InspectionData = {
@@ -41,41 +59,42 @@ type InspectionData = {
 
 type Data = InspectionData[];
 
-function adaptDataToBusinesses(data: Data): Business[] {
-	return (
-		_.chain(data)
-			// Step 1: Group by business ID
-			.groupBy('business_id')
-			// Step 2: Iterate over each group
-			.map((group) => {
-				// Step 3: Sort each group by inspection date in descending order
-				const sortedGroup = _.sortBy(group, 'inspection_date').reverse();
-				// Step 4: Get the latest inspection
-				const latestInspection = _.first(sortedGroup);
-				// Step 5: Filter out records with violation points greater than 0
-				const violations = _.filter(
-					sortedGroup,
-					(inspection) => parseInt(inspection.violation_points) > 0
-				);
-				// Step 6: Sort violations by inspection date in descending order
-				const sortedViolations = _.sortBy(violations, 'inspection_date').reverse();
-				// Step 7: Get the latest violation
-				const latestViolation = _.first(sortedViolations);
-				// Return the transformed data
-				return {
-					business_id: latestInspection?.business_id,
-					address: latestInspection?.address,
-					city: latestInspection?.city,
-					grade: latestInspection?.grade,
-					name: latestInspection?.program_identifier,
-					phone: latestInspection?.phone,
-					program_identifier: latestInspection?.program_identifier,
-					last_inspection: latestInspection?.inspection_date,
-					last_violation: latestViolation ? latestViolation.inspection_date : undefined
-				} as Business;
-			})
-			.value()
-	);
+function adaptDataToBusinesses(data: Data): Business {
+	const businessData = data[0]; // Grab the first business from the list
+	const inspections = _.uniq(data, false, (item) => item.inspection_date).map((item) => ({
+		business_name: item.inspection_business_name,
+		closed_business: item.inspection_closed_business,
+		date: item.inspection_date,
+		result: item.inspection_result,
+		score: item.inspection_score,
+		serial_num: item.inspection_serial_num,
+		type: item.inspection_type
+	}));
+
+	const violations: Violation[] = data
+		.map((item) => {
+			const [record_id = '', description = ''] = (item.violation_description ?? '').split(' - ');
+			return {
+				description,
+				points: item.violation_points,
+				record_id,
+				type: item.violation_type,
+				date: item.inspection_date
+			};
+		})
+		.filter((violation) => parseInt(violation.points) > 0);
+
+	return {
+		business_id: businessData.business_id,
+		address: businessData.address,
+		city: businessData.city,
+		grade: businessData.grade,
+		name: businessData.name,
+		phone: businessData.phone,
+		program_identifier: businessData.program_identifier,
+		inspections,
+		violations
+	} as Business;
 }
 
 /** @type {import('./$types').RequestHandler} */
