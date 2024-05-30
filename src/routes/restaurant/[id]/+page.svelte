@@ -4,8 +4,6 @@
 
 	export let data: PageData;
 
-	let search = '';
-
 	function calculateInspectionResultClass(result: string) {
 		switch (result) {
 			case 'Satisfactory':
