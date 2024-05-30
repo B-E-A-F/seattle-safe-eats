@@ -1,5 +1,6 @@
 import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
+import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentInspection.js';
 
 type Inspection = {
 	business_name: string;
@@ -31,34 +32,7 @@ export type Business = {
 	inspections: Inspection[];
 };
 
-type InspectionData = {
-	address: string;
-	business_id: string;
-	city: string;
-	description: string;
-	grade: string;
-	inspection_business_name: string;
-	inspection_closed_business: boolean;
-	inspection_date: string;
-	inspection_result: string;
-	inspection_score: string;
-	inspection_serial_num: string;
-	inspection_type: string;
-	latitude: string;
-	longitude: string;
-	name: string;
-	phone: string;
-	program_identifier: string;
-	violation_description: string;
-	violation_points: string;
-	violation_record_id: string;
-	violation_type: string;
-	zip_code: string;
-};
-
-type Data = InspectionData[];
-
-function adaptDataToBusinesses(data: Data): Business {
+function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business {
 	const businessData = data[0]; // Grab the first business from the list
 
 	// Create a map to collect inspections with their respective violations
@@ -124,7 +98,7 @@ export async function GET({ params }) {
 
 	const response = await fetch(url, options);
 
-	const inspectionData = (await response.json()) as Data;
+	const inspectionData = (await response.json()) as FoodEstablishmentInspections;
 
 	return json({
 		businesses: adaptDataToBusinesses(inspectionData)

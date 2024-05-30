@@ -1,6 +1,7 @@
 import { json } from '@sveltejs/kit';
 import _ from 'underscore';
 import { env } from '$env/dynamic/private';
+import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentInspection.js';
 
 export type Business = {
 	business_id: string;
@@ -14,34 +15,7 @@ export type Business = {
 	last_violation: string;
 };
 
-type InspectionData = {
-	address: string;
-	business_id: string;
-	city: string;
-	description: string;
-	grade: string;
-	inspection_business_name: string;
-	inspection_closed_business: boolean;
-	inspection_date: string;
-	inspection_result: string;
-	inspection_score: string;
-	inspection_serial_num: string;
-	inspection_type: string;
-	latitude: string;
-	longitude: string;
-	name: string;
-	phone: string;
-	program_identifier: string;
-	violation_description: string;
-	violation_points: string;
-	violation_record_id: string;
-	violation_type: string;
-	zip_code: string;
-};
-
-type Data = InspectionData[];
-
-function adaptDataToBusinesses(data: Data): Business[] {
+function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
 	return (
 		_.chain(data)
 			// Step 1: Group by business ID
@@ -93,7 +67,7 @@ export async function GET({ params }) {
 
 	const response = await fetch(dataUrl, options);
 
-	const inspectionData = (await response.json()) as Data;
+	const inspectionData = (await response.json()) as FoodEstablishmentInspections;
 
 	return json({
 		businesses: adaptDataToBusinesses(inspectionData)
