@@ -1,6 +1,8 @@
 <script lang="ts">
 	import TimeAgo from 'javascript-time-ago';
 
+	import Grade from '$lib/components/Grade.svelte';
+
 	// English.
 	import en from 'javascript-time-ago/locale/en';
 	import { onMount } from 'svelte';
@@ -21,20 +23,6 @@
 		const params = new URLSearchParams(window.location.search);
 		search = params.get('q') || '';
 	});
-
-	function calculateGradeClass(grade: string | undefined) {
-		switch (grade) {
-			case '1':
-				return 'bg-success';
-			case '2':
-				return 'bg-warning text-black';
-			case undefined:
-				return 'bg-neutral';
-			case '3':
-			default:
-				return 'bg-error';
-		}
-	}
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -76,13 +64,7 @@
 		{#each data.businesses as business}
 			<li class="flex flex-col p-4">
 				<div class="flex items-center gap-4">
-					<div class="avatar placeholder">
-						<div
-							class={`text-neutral-content rounded-full w-8 ${calculateGradeClass(business.grade)}`}
-						>
-							<span class="text-2xl">{business.grade ?? '0'}</span>
-						</div>
-					</div>
+					<Grade grade={business.grade} />
 					<div class="flex flex-col">
 						<a class="link" href={`/restaurant/${business.business_id}`}>{business.name}</a>
 						<span>{business.city}</span>
