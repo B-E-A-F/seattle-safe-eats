@@ -3,7 +3,7 @@
 	import en from 'javascript-time-ago/locale/en';
 	import Search from '$lib/components/Search.svelte';
 	import Grade from '$lib/components/Grade.svelte';
-	import type { PageData } from '../$types';
+	import type { PageData } from './$types';
 
 	export let data: PageData;
 
