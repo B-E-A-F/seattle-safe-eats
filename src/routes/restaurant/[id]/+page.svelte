@@ -4,6 +4,13 @@
 
 	export let data: PageData;
 
+	let backDisabled = false;
+
+	function navigateBack() {
+		backDisabled = true;
+		window.history.back();
+	}
+
 	function calculateInspectionResultClass(result: string) {
 		switch (result) {
 			case 'Satisfactory':
@@ -19,7 +26,7 @@
 
 <div class="flex flex-col flex-1">
 	<div>
-		<button class="btn btn-ghost" on:click={() => window.history.back()}>
+		<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
 			<BackArrow />
 		</button>
 	</div>
