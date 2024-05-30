@@ -13,6 +13,10 @@
 	const timeAgo = new TimeAgo('en-US');
 </script>
 
+<svelte:head>
+	<title>Seattle Safe Eats</title>
+</svelte:head>
+
 <div class="flex flex-col flex-grow">
 	<div
 		class="flex flex-col gap-2 border-b-2 border-b-base-200 justify-center items-center py-4 md:flex-row md:justify-normal md:p-4"

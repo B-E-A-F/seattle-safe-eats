@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Grade from '$lib/components/Grade.svelte';
+	import Search from '$lib/components/Search.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from '../$types';
 
@@ -24,20 +26,39 @@
 	}
 </script>
 
-<div class="flex flex-col flex-1">
-	<div>
+<svelte:head>
+	<title>Seattle Safe Eats | {data.businesses.name}</title>
+</svelte:head>
+
+<div class="flex flex-col flex-grow">
+	<div class="md:hidden">
 		<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
 			<BackArrow />
 		</button>
 	</div>
-	<div class="flex flex-col flex-1 p-4">
-		<h2 class="text-2xl">{data.businesses.name}</h2>
-		<h2 class="text-2xl">{data.businesses.city}</h2>
-		{#if data.businesses.phone}
-			<h2 class="text-2xl">{data.businesses.phone}</h2>
-		{/if}
-		<div class="divider md:max-w-80">Inspections</div>
-		<ul class="flex flex-col gap-6 md:max-w-80">
+	<div
+		class="hidden md:flex flex-col gap-2 border-b-2 border-b-base-200 justify-center items-center py-4 md:flex-row md:justify-normal md:p-4"
+	>
+		<a href="/">
+			<h1 class="text-2xl">Seattle Safe Eats</h1>
+		</a>
+		<Search className="w-full px-4 md:w-auto" />
+	</div>
+	<div class="flex flex-col p-4 gap-4">
+		<div class="flex flex-col">
+			<strong class="text-md font-bold">Restaurant: </strong>
+			<span class="text-2xl">{data.businesses.name}</span>
+			<strong class="text-md font-bold">Address: </strong>
+			<span class="text-md">{data.businesses.address}</span>
+			<span class="text-md">{data.businesses.city}, WA {data.businesses.zip_code}</span>
+			{#if data.businesses.phone}
+				<strong class="text-md font-bold">Phone number: </strong>
+				<h2 class="text-md">{data.businesses.phone}</h2>
+			{/if}
+		</div>
+		<Grade grade={data.businesses.grade} withLabel />
+		<div class="divider md:max-w-96">Inspections</div>
+		<ul class="flex flex-col gap-6 md:max-w-96">
 			{#each data.businesses.inspections as inspection}
 				<li class="flex flex-col gap-2 p-2 border border-primary">
 					<div class="flex justify-between">
