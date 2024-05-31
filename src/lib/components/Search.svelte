@@ -6,7 +6,7 @@
 
 	function navigateSearch() {
 		if (search.length < 3) return;
-		window.location.href = `/search?q=${encodeURI(search)}`;
+		window.location.href = `/search?q=${encodeURI(search.replace(/[^a-zA-Z0-9 ]/g, ''))}`;
 	}
 
 	onMount(() => {

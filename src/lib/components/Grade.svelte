@@ -41,9 +41,14 @@
 		{/if}
 	</div>
 {:else}
-	<div
-		class="bg-neutral w-[50px] h-[50px] rounded-full flex items-center justify-center text-xl font-semibold"
-	>
-		N/A
+	<div class="flex items-center gap-2 font-bold">
+		<div
+			class="bg-neutral w-[50px] h-[50px] rounded-full text-xl font-semibold flex items-center justify-center"
+		>
+			N/A
+		</div>
+		{#if withLabel}
+			<span>No Grade Available</span>
+		{/if}
 	</div>
 {/if}
