@@ -27,7 +27,7 @@
 		<Search className="w-full px-4 md:w-auto" />
 	</div>
 	{#if data.businesses.length === 0}
-		<div class="flex flex-1 flex-col items-center justify-center gap-4">
+		<div class="flex flex-1 flex-col items-center justify-center gap-4 md:text-2xl">
 			<p class="px-8 text-center">No results found</p>
 			<Grade grade="4" />
 		</div>

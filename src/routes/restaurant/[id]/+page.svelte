@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Grade from '$lib/components/Grade.svelte';
 	import Search from '$lib/components/Search.svelte';
+	import Alert from '$lib/components/icons/Alert.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from '../$types';
 
@@ -22,6 +23,15 @@
 			case 'Complete':
 			default:
 				return '';
+		}
+	}
+
+	function calculateViolationTypeColorClass(type: string) {
+		switch (type) {
+			case 'BLUE':
+				return 'text-info';
+			case 'RED':
+				return 'text-error';
 		}
 	}
 </script>
@@ -97,12 +107,17 @@
 										{#each inspection.violations as violation, i}
 											<li class="flex flex-col gap-2">
 												<span class="font-semibold">{violation.record_id}</span>
-												<span>
-													{violation.description}
-													<span class="text-error">
-														(+{violation.points})
+												<div class="flex flex-row items-center gap-4">
+													<div class="w-6">
+														<Alert className={calculateViolationTypeColorClass(violation.type)} />
+													</div>
+													<span>
+														{violation.description}
+														<span class="text-error">
+															(+{violation.points})
+														</span>
 													</span>
-												</span>
+												</div>
 												{#if i < inspection.violations.length - 1}
 													<div class="divider m-4" />
 												{/if}
