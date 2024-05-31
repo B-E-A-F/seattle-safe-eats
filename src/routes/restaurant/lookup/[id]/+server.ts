@@ -89,7 +89,7 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 		address: businessData.address,
 		city: businessData.city,
 		grade: businessData.grade,
-		name: businessData.name,
+		name: businessData.program_identifier,
 		phone: businessData.phone,
 		program_identifier: businessData.program_identifier,
 		zip_code: businessData.zip_code,
