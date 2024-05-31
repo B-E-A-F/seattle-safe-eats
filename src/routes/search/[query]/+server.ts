@@ -4,7 +4,8 @@ import { env } from '$env/dynamic/private';
 import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentInspection.js';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
-TimeAgo.addDefaultLocale(en);
+TimeAgo.setDefaultLocale(en.locale);
+TimeAgo.addLocale(en);
 
 // Create formatter (English).
 const timeAgo = new TimeAgo('en-US');
@@ -50,7 +51,7 @@ function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
 					name: latestInspection?.program_identifier,
 					phone: latestInspection?.phone,
 					program_identifier: latestInspection?.program_identifier,
-					last_inspection: latestInspection
+					last_inspection: latestInspection?.inspection_date
 						? timeAgo.format(new Date(latestInspection.inspection_date))
 						: undefined,
 					last_violation: latestViolation
