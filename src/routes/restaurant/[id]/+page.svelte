@@ -29,9 +29,9 @@
 	function calculateViolationTypeColorClass(type: string) {
 		switch (type) {
 			case 'BLUE':
-				return 'text-info';
+				return 'text-blue-600';
 			case 'RED':
-				return 'text-error';
+				return 'text-red-600';
 		}
 	}
 </script>
@@ -68,8 +68,7 @@
 		</div>
 		<Grade grade={data.businesses.grade} withLabel />
 		<div class="divider md:max-w-96">Inspections</div>
-
-		{#if data.businesses.inspections[0].violations.length === 0}
+		{#if !data.businesses.inspections.some((inspection) => inspection.violations.length > 0)}
 			<div
 				class="flex flex-1 flex-col items-center justify-center gap-4 md:items-start md:justify-start md:max-w-96"
 			>

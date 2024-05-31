@@ -55,7 +55,19 @@ function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business {
 
 		// If the violation points are greater than 0, add a violation to the respective inspection
 		if (parseInt(item.violation_points) > 0) {
-			const [record_id = '', description = ''] = (item.violation_description ?? '').split(' - ');
+			let record_id = '';
+			let description = '';
+
+			// Older violations don't have violation numbers
+			if (item.violation_description.includes(' - ')) {
+				const splitDescription = (item.violation_description ?? '').split(' - ');
+
+				record_id = splitDescription[0];
+				description = splitDescription[1];
+			} else {
+				record_id = '';
+				description = item.violation_description;
+			}
 
 			const violation: Violation = {
 				description,
