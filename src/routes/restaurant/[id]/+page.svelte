@@ -67,7 +67,10 @@
 				<h2 class="text-md">{business.phone}</h2>
 			{/if}
 		</div>
-		<Grade grade={business.grade} withLabel />
+		<div class="flex flex-col gap-2 md:max-w-96">
+			<strong class="text-md font-bold">Grade: </strong>
+			<Grade grade={business.grade} withLabel withDescription />
+		</div>
 		<div class="divider md:max-w-96">Inspections</div>
 		{#if business.inspections.length === 1 && business.inspections[0].violations.length === 0}
 			<div

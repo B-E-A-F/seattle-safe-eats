@@ -6,6 +6,7 @@
 
 	export let grade: string | undefined;
 	export let withLabel: boolean = false;
+	export let withDescription: boolean = false;
 </script>
 
 {#if grade === '1'}
@@ -15,6 +16,10 @@
 			<span>Excellent</span>
 		{/if}
 	</div>
+	{#if withDescription}
+		The restaurant has had no or minor unsafe food handling practices over the last four
+		inspections.
+	{/if}
 {:else if grade === '2'}
 	<div class="flex items-center gap-2 font-bold">
 		<img class="rounded-full" alt="Smiley face representing good rating" src={good} />
@@ -22,6 +27,9 @@
 			<span>Good</span>
 		{/if}
 	</div>
+	{#if withDescription}
+		The restaurant has had a few unsafe food handling practices over the last four inspections.
+	{/if}
 {:else if grade === '3'}
 	<div class="flex items-center gap-2 font-bold">
 		<img class="rounded-full" alt="Smiley face representing okay rating" src={okay} />
@@ -29,6 +37,9 @@
 			<span>Okay</span>
 		{/if}
 	</div>
+	{#if withDescription}
+		The restaurant has had several unsafe food handling practices over the last four inspections.
+	{/if}
 {:else if grade === '4'}
 	<div class="flex items-center gap-2 font-bold">
 		<img
@@ -40,6 +51,10 @@
 			<span>Needs To Improve</span>
 		{/if}
 	</div>
+	{#if withDescription}
+		This restaurant was either closed by Public Health - Seattle & King County within the last year
+		or needed multiple return inspections to correct unsafe food handling practices.
+	{/if}
 {:else}
 	<div class="flex items-center gap-2 font-bold">
 		<div
