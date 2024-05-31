@@ -2,6 +2,12 @@ import { json } from '@sveltejs/kit';
 import _ from 'underscore';
 import { env } from '$env/dynamic/private';
 import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentInspection.js';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+TimeAgo.addDefaultLocale(en);
+
+// Create formatter (English).
+const timeAgo = new TimeAgo('en-US');
 
 export type Business = {
 	business_id: string;
@@ -44,8 +50,12 @@ function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
 					name: latestInspection?.program_identifier,
 					phone: latestInspection?.phone,
 					program_identifier: latestInspection?.program_identifier,
-					last_inspection: latestInspection?.inspection_date,
-					last_violation: latestViolation ? latestViolation.inspection_date : undefined
+					last_inspection: latestInspection
+						? timeAgo.format(new Date(latestInspection.inspection_date))
+						: undefined,
+					last_violation: latestViolation
+						? timeAgo.format(new Date(latestViolation.inspection_date))
+						: undefined
 				} as Business;
 			})
 			.value()

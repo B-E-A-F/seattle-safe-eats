@@ -1,16 +1,9 @@
 <script lang="ts">
-	import TimeAgo from 'javascript-time-ago';
-	import en from 'javascript-time-ago/locale/en';
 	import Search from '$lib/components/Search.svelte';
 	import Grade from '$lib/components/Grade.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	TimeAgo.addDefaultLocale(en);
-
-	// Create formatter (English).
-	const timeAgo = new TimeAgo('en-US');
 </script>
 
 <svelte:head>
@@ -43,11 +36,11 @@
 							<span>{business.address}</span>
 						</div>
 					</div>
-					<span class="text-secondary">
-						{`Last inspection: ${business.last_inspection ? timeAgo.format(new Date(business.last_inspection)) : 'No inspections'}`}
+					<span class="text-info-content">
+						{`Last inspection: ${business.last_inspection ? business.last_inspection : 'No inspections'}`}
 					</span>
-					<span class="text-secondary">
-						{`Last violation: ${business.last_violation ? timeAgo.format(new Date(business.last_violation)) : 'No violations'}`}
+					<span class="text-info-content">
+						{`Last violation: ${business.last_violation ? business.last_violation : 'No violations'}`}
 					</span>
 				</li>
 			{/each}

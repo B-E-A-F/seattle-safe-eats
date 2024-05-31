@@ -69,7 +69,7 @@
 		</div>
 		<Grade grade={business.grade} withLabel />
 		<div class="divider md:max-w-96">Inspections</div>
-		{#if !business.inspections.some((inspection) => inspection.violations.length > 0)}
+		{#if business.inspections.length === 1 && business.inspections[0].violations.length === 0}
 			<div
 				class="flex flex-1 flex-col items-center justify-center gap-4 md:items-start md:justify-start md:max-w-96"
 			>
