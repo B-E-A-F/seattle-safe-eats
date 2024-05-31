@@ -58,50 +58,63 @@
 		</div>
 		<Grade grade={data.businesses.grade} withLabel />
 		<div class="divider md:max-w-96">Inspections</div>
-		<ul class="flex flex-col gap-6 md:max-w-96">
-			{#each data.businesses.inspections as inspection}
-				<li class="flex flex-col gap-2 p-2 border border-primary">
-					<div class="flex justify-between">
-						<span class={calculateInspectionResultClass(inspection.result)}
-							>{inspection.result}</span
-						>
-						<span class="text-secondary">{new Date(inspection.date).toLocaleDateString()}</span>
-					</div>
-					{#if inspection.score > 0}
-						<span class="font-semibold">Score: {inspection.score}</span>
-					{/if}
-					<span>{inspection.type}</span>
 
-					{#if inspection.violations.length > 0}
-						<div class="collapse collapse-arrow bg-base-200">
-							<input type="checkbox" class="peer" />
-							<div class="collapse-title text-primary-content peer-checked:text-secondary-content">
-								Violations
-							</div>
-							<div
-								class="collapse-content text-primary-content peer-checked:text-secondary-content"
+		{#if data.businesses.inspections[0].violations.length === 0}
+			<div
+				class="flex flex-1 flex-col items-center justify-center gap-4 md:items-start md:justify-start md:max-w-96"
+			>
+				<p class="px-8 text-center">
+					This restaurant has not received any inspections, or none could be found
+				</p>
+			</div>
+		{:else}
+			<ul class="flex flex-col gap-6 md:max-w-96">
+				{#each data.businesses.inspections as inspection}
+					<li class="flex flex-col gap-2 p-2 border border-primary">
+						<div class="flex justify-between">
+							<span class={calculateInspectionResultClass(inspection.result)}
+								>{inspection.result}</span
 							>
-								<ul>
-									{#each inspection.violations as violation, i}
-										<li class="flex flex-col gap-2">
-											<span class="font-semibold">{violation.record_id}</span>
-											<span>
-												{violation.description}
-												<span class="text-error">
-													(+{violation.points})
-												</span>
-											</span>
-											{#if i < inspection.violations.length - 1}
-												<div class="divider m-4" />
-											{/if}
-										</li>
-									{/each}
-								</ul>
-							</div>
+							<span class="text-secondary">{new Date(inspection.date).toLocaleDateString()}</span>
 						</div>
-					{/if}
-				</li>
-			{/each}
-		</ul>
+						{#if inspection.score > 0}
+							<span class="font-semibold">Score: {inspection.score}</span>
+						{/if}
+						<span>{inspection.type}</span>
+
+						{#if inspection.violations.length > 0}
+							<div class="collapse collapse-arrow bg-base-200">
+								<input type="checkbox" class="peer" />
+								<div
+									class="collapse-title text-primary-content peer-checked:text-secondary-content"
+								>
+									Violations
+								</div>
+								<div
+									class="collapse-content text-primary-content peer-checked:text-secondary-content"
+								>
+									<ul>
+										{#each inspection.violations as violation, i}
+											<li class="flex flex-col gap-2">
+												<span class="font-semibold">{violation.record_id}</span>
+												<span>
+													{violation.description}
+													<span class="text-error">
+														(+{violation.points})
+													</span>
+												</span>
+												{#if i < inspection.violations.length - 1}
+													<div class="divider m-4" />
+												{/if}
+											</li>
+										{/each}
+									</ul>
+								</div>
+							</div>
+						{/if}
+					</li>
+				{/each}
+			</ul>
+		{/if}
 	</div>
 </div>

@@ -2,6 +2,7 @@
 	import excellent from '$lib/assets/excellent.gif';
 	import good from '$lib/assets/good.gif';
 	import okay from '$lib/assets/okay.gif';
+	import needstoimprove from '$lib/assets/needstoimprove.gif';
 
 	export let grade: string | undefined;
 	export let withLabel: boolean = false;
@@ -26,6 +27,17 @@
 		<img class="rounded-full" alt="Smiley face representing okay rating" src={okay} />
 		{#if withLabel}
 			<span>Okay</span>
+		{/if}
+	</div>
+{:else if grade === '4'}
+	<div class="flex items-center gap-2 font-bold">
+		<img
+			class="rounded-full"
+			alt="Smiley face representing needs to improve rating"
+			src={needstoimprove}
+		/>
+		{#if withLabel}
+			<span>Needs To Improve</span>
 		{/if}
 	</div>
 {:else}

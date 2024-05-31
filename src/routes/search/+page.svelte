@@ -26,24 +26,31 @@
 		</a>
 		<Search className="w-full px-4 md:w-auto" />
 	</div>
-	<ul>
-		{#each data.businesses as business}
-			<li class="flex flex-col p-4">
-				<div class="flex items-center gap-4">
-					<Grade grade={business.grade} />
-					<div class="flex flex-col">
-						<a class="link" href={`/restaurant/${business.business_id}`}>{business.name}</a>
-						<span>{business.city}</span>
-						<span>{business.address}</span>
+	{#if data.businesses.length === 0}
+		<div class="flex flex-1 flex-col items-center justify-center gap-4">
+			<p class="px-8 text-center">No results found</p>
+			<Grade grade="4" />
+		</div>
+	{:else}
+		<ul>
+			{#each data.businesses as business}
+				<li class="flex flex-col p-4">
+					<div class="flex items-center gap-4">
+						<Grade grade={business.grade} />
+						<div class="flex flex-col">
+							<a class="link" href={`/restaurant/${business.business_id}`}>{business.name}</a>
+							<span>{business.city}</span>
+							<span>{business.address}</span>
+						</div>
 					</div>
-				</div>
-				<span class="text-secondary">
-					{`Last inspection: ${business.last_inspection ? timeAgo.format(new Date(business.last_inspection)) : 'No inspections'}`}
-				</span>
-				<span class="text-secondary">
-					{`Last violation: ${business.last_violation ? timeAgo.format(new Date(business.last_violation)) : 'No violations'}`}
-				</span>
-			</li>
-		{/each}
-	</ul>
+					<span class="text-secondary">
+						{`Last inspection: ${business.last_inspection ? timeAgo.format(new Date(business.last_inspection)) : 'No inspections'}`}
+					</span>
+					<span class="text-secondary">
+						{`Last violation: ${business.last_violation ? timeAgo.format(new Date(business.last_violation)) : 'No violations'}`}
+					</span>
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </div>
