@@ -30,9 +30,10 @@ export type Business = {
 	phone: string;
 	program_identifier: string;
 	inspections: Inspection[];
+	zip_code: string;
 };
 
-function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business {
+function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 	const businessData = data[0]; // Grab the first business from the list
 
 	// Create a map to collect inspections with their respective violations
@@ -93,7 +94,7 @@ function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business {
 		program_identifier: businessData.program_identifier,
 		zip_code: businessData.zip_code,
 		inspections
-	} as Business;
+	};
 }
 
 /** @type {import('./$types').RequestHandler} */
@@ -114,6 +115,6 @@ export async function GET({ params }) {
 	const inspectionData = (await response.json()) as FoodEstablishmentInspections;
 
 	return json({
-		businesses: adaptDataToBusinesses(inspectionData)
+		business: adaptDataToBusiness(inspectionData)
 	});
 }

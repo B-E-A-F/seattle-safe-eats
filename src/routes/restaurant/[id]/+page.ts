@@ -1,3 +1,4 @@
+import type { Business } from '../lookup/[id]/+server';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async function ({ fetch, params }) {
@@ -5,9 +6,9 @@ export const load: PageLoad = async function ({ fetch, params }) {
 
 	const response = await fetch(url);
 
-	const { businesses } = await response.json();
+	const { business } = (await response.json()) as { business: Business };
 
 	return {
-		businesses
+		business
 	};
 };

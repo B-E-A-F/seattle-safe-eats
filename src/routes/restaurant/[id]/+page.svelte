@@ -3,9 +3,10 @@
 	import Search from '$lib/components/Search.svelte';
 	import Alert from '$lib/components/icons/Alert.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
-	import type { PageData } from '../$types';
+	import type { PageData } from './$types';
 
 	export let data: PageData;
+	const { business } = data;
 
 	let backDisabled = false;
 
@@ -37,7 +38,7 @@
 </script>
 
 <svelte:head>
-	<title>Seattle Safe Eats | {data.businesses.name}</title>
+	<title>Seattle Safe Eats | {business.name}</title>
 </svelte:head>
 
 <div class="flex flex-col flex-grow">
@@ -57,18 +58,18 @@
 	<div class="flex flex-col p-4 gap-4">
 		<div class="flex flex-col">
 			<strong class="text-md font-bold">Restaurant: </strong>
-			<span class="text-2xl">{data.businesses.name}</span>
+			<span class="text-2xl">{business.name}</span>
 			<strong class="text-md font-bold">Address: </strong>
-			<span class="text-md">{data.businesses.address}</span>
-			<span class="text-md">{data.businesses.city}, WA {data.businesses.zip_code}</span>
-			{#if data.businesses.phone}
+			<span class="text-md">{business.address}</span>
+			<span class="text-md">{business.city}, WA {business.zip_code}</span>
+			{#if business.phone}
 				<strong class="text-md font-bold">Phone number: </strong>
-				<h2 class="text-md">{data.businesses.phone}</h2>
+				<h2 class="text-md">{business.phone}</h2>
 			{/if}
 		</div>
-		<Grade grade={data.businesses.grade} withLabel />
+		<Grade grade={business.grade} withLabel />
 		<div class="divider md:max-w-96">Inspections</div>
-		{#if !data.businesses.inspections.some((inspection) => inspection.violations.length > 0)}
+		{#if !business.inspections.some((inspection) => inspection.violations.length > 0)}
 			<div
 				class="flex flex-1 flex-col items-center justify-center gap-4 md:items-start md:justify-start md:max-w-96"
 			>
@@ -78,7 +79,7 @@
 			</div>
 		{:else}
 			<ul class="flex flex-col gap-6 md:max-w-96">
-				{#each data.businesses.inspections as inspection}
+				{#each business.inspections as inspection}
 					<li class="flex flex-col gap-2 p-2 border border-primary">
 						<div class="flex justify-between">
 							<span class={calculateInspectionResultClass(inspection.result)}
@@ -86,7 +87,7 @@
 							>
 							<span class="text-secondary">{new Date(inspection.date).toLocaleDateString()}</span>
 						</div>
-						{#if inspection.score > 0}
+						{#if parseInt(inspection.score) > 0}
 							<span class="font-semibold">Score: {inspection.score}</span>
 						{/if}
 						<span>{inspection.type}</span>
