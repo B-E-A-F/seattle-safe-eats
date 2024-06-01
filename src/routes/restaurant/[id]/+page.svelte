@@ -27,9 +27,9 @@
 	function calculateInspectionResultClass(result: string) {
 		switch (result) {
 			case 'Satisfactory':
-				return 'text-success';
+				return 'text-green-600';
 			case 'Unsatisfactory':
-				return 'text-error';
+				return 'text-red-600';
 			case 'Complete':
 			default:
 				return '';
@@ -78,7 +78,9 @@
 				<strong class="text-md font-bold">Phone number: </strong>
 				<h2 class="text-md">{business.phone}</h2>
 			{/if}
+			<span class="text-md font-bold text-red-600 mt-4">{business.risk_category}</span>
 		</div>
+
 		<div class="flex flex-col gap-2 md:max-w-96">
 			<strong class="text-md font-bold">Grade: </strong>
 			<Grade grade={business.grade} withLabel withDescription withDial />
@@ -100,10 +102,10 @@
 							<span class={calculateInspectionResultClass(inspection.result)}
 								>{inspection.result}</span
 							>
-							<span class="text-secondary">{new Date(inspection.date).toLocaleDateString()}</span>
+							<span>{new Date(inspection.date).toLocaleDateString()}</span>
 						</div>
 						{#if parseInt(inspection.score) > 0}
-							<span class="font-semibold">Score: {inspection.score}</span>
+							<span>Score: {inspection.score}</span>
 						{/if}
 						<span>{inspection.type}</span>
 
@@ -128,7 +130,7 @@
 													</div>
 													<span>
 														{violation.description}
-														<span class="text-error">
+														<span class="text-red-600">
 															(+{violation.points})
 														</span>
 													</span>

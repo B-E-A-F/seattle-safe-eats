@@ -31,6 +31,7 @@ export type Business = {
 	program_identifier: string;
 	inspections: Inspection[];
 	zip_code: string;
+	risk_category: string | undefined;
 };
 
 function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
@@ -84,6 +85,9 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 	// Convert the inspections map to an array
 	const inspections = Array.from(inspectionsMap.values());
 
+	// The risk category is separated by " - " in the business description
+	const risk_category = businessData.description.split(' - ')[1] ?? undefined;
+
 	return {
 		business_id: businessData.business_id,
 		address: businessData.address,
@@ -93,6 +97,7 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 		phone: businessData.phone,
 		program_identifier: businessData.program_identifier,
 		zip_code: businessData.zip_code,
+		risk_category,
 		inspections
 	};
 }
