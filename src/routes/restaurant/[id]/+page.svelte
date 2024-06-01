@@ -3,7 +3,6 @@
 	import Search from '$lib/components/Search.svelte';
 	import Share from '$lib/components/icons/Share.svelte';
 	import Alert from '$lib/components/icons/Alert.svelte';
-	import Hint from '$lib/components/icons/Hint.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from './$types';
 	import RiskCategoryInfo from './RiskCategoryInfo.svelte';
@@ -15,6 +14,9 @@
 
 	function navigateBack() {
 		backDisabled = true;
+		if (!document.referrer.includes(window.location.host)) {
+			window.location.href = '/';
+		}
 		window.history.back();
 	}
 
