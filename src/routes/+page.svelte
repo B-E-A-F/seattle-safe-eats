@@ -8,7 +8,9 @@
 
 <div class="flex flex-1 justify-center items-center flex-col gap-6">
 	<h1 class="text-6xl text-center">Seattle<br />Safe<br />Eats</h1>
-	<Search />
+	<div class="md:max-w-96 w-full px-8">
+		<Search />
+	</div>
 </div>
 
 <style lang="postcss">

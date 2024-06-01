@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Grade from '$lib/components/Grade.svelte';
+	import GradeDial from '$lib/components/GradeDial.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Alert from '$lib/components/icons/Alert.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
@@ -69,7 +70,7 @@
 		</div>
 		<div class="flex flex-col gap-2 md:max-w-96">
 			<strong class="text-md font-bold">Grade: </strong>
-			<Grade grade={business.grade} withLabel withDescription />
+			<Grade grade={business.grade} withLabel withDescription withDial />
 		</div>
 		<div class="divider md:max-w-96">Inspections</div>
 		{#if business.inspections.length === 1 && business.inspections[0].violations.length === 0}

@@ -3,17 +3,26 @@
 	import good from '$lib/assets/good.gif';
 	import okay from '$lib/assets/okay.gif';
 	import needstoimprove from '$lib/assets/needstoimprove.gif';
+	import GradeDial from './GradeDial.svelte';
 
 	export let grade: string | undefined;
 	export let withLabel: boolean = false;
 	export let withDescription: boolean = false;
+	export let withDial: boolean = false;
 </script>
 
 {#if grade === '1'}
-	<div class="flex items-center gap-2 font-bold">
-		<img class="rounded-full" alt="Smiley face representing excellent rating" src={excellent} />
-		{#if withLabel}
-			<span>Excellent</span>
+	<div class="flex font-bold justify-between">
+		<div class="flex gap-2 items-center">
+			<img class="rounded-full" alt="Smiley face representing excellent rating" src={excellent} />
+			{#if withLabel}
+				<span>Excellent</span>
+			{/if}
+		</div>
+		{#if withDial}
+			<div class="w-32 mr-10">
+				<GradeDial {grade} />
+			</div>
 		{/if}
 	</div>
 	{#if withDescription}
@@ -21,34 +30,55 @@
 		inspections.
 	{/if}
 {:else if grade === '2'}
-	<div class="flex items-center gap-2 font-bold">
-		<img class="rounded-full" alt="Smiley face representing good rating" src={good} />
-		{#if withLabel}
-			<span>Good</span>
+	<div class="flex font-bold justify-between">
+		<div class="flex gap-2 items-center">
+			<img class="rounded-full" alt="Smiley face representing good rating" src={good} />
+			{#if withLabel}
+				<span>Good</span>
+			{/if}
+		</div>
+		{#if withDial}
+			<div class="w-32 mr-10">
+				<GradeDial {grade} />
+			</div>
 		{/if}
 	</div>
 	{#if withDescription}
 		The restaurant has had a few unsafe food handling practices over the last four inspections.
 	{/if}
 {:else if grade === '3'}
-	<div class="flex items-center gap-2 font-bold">
-		<img class="rounded-full" alt="Smiley face representing okay rating" src={okay} />
-		{#if withLabel}
-			<span>Okay</span>
+	<div class="flex font-bold justify-between">
+		<div class="flex gap-2 items-center">
+			<img class="rounded-full" alt="Smiley face representing okay rating" src={okay} />
+			{#if withLabel}
+				<span>Okay</span>
+			{/if}
+		</div>
+		{#if withDial}
+			<div class="w-32 mr-10">
+				<GradeDial {grade} />
+			</div>
 		{/if}
 	</div>
 	{#if withDescription}
 		The restaurant has had several unsafe food handling practices over the last four inspections.
 	{/if}
 {:else if grade === '4'}
-	<div class="flex items-center gap-2 font-bold">
-		<img
-			class="rounded-full"
-			alt="Smiley face representing needs to improve rating"
-			src={needstoimprove}
-		/>
-		{#if withLabel}
-			<span>Needs To Improve</span>
+	<div class="flex font-bold justify-between">
+		<div class="flex gap-2 items-center">
+			<img
+				class="rounded-full"
+				alt="Smiley face representing needs to improve rating"
+				src={needstoimprove}
+			/>
+			{#if withLabel}
+				<span>Needs To Improve</span>
+			{/if}
+		</div>
+		{#if withDial}
+			<div class="w-32 mr-10">
+				<GradeDial {grade} />
+			</div>
 		{/if}
 	</div>
 	{#if withDescription}
