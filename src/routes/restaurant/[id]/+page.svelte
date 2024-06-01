@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Grade from '$lib/components/Grade.svelte';
-	import GradeDial from '$lib/components/GradeDial.svelte';
 	import Search from '$lib/components/Search.svelte';
+	import Share from '$lib/components/icons/Share.svelte';
 	import Alert from '$lib/components/icons/Alert.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from './$types';
@@ -14,6 +14,14 @@
 	function navigateBack() {
 		backDisabled = true;
 		window.history.back();
+	}
+
+	function shareLink() {
+		navigator.share({
+			title: business.name,
+			text: `Check out ${business.name} on Seattle Safe Eats!`,
+			url: window.location.href
+		});
 	}
 
 	function calculateInspectionResultClass(result: string) {
@@ -43,9 +51,12 @@
 </svelte:head>
 
 <div class="flex flex-col flex-grow">
-	<div class="md:hidden">
+	<div class="flex justify-between md:hidden">
 		<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
 			<BackArrow />
+		</button>
+		<button class="btn btn-ghost" on:click={shareLink}>
+			<Share />
 		</button>
 	</div>
 	<div
