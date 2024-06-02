@@ -6,6 +6,7 @@
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from './$types';
 	import RiskCategoryInfo from './RiskCategoryInfo.svelte';
+	import { getRequest } from '@sveltejs/kit/node';
 
 	export let data: PageData;
 	const { business } = data;
@@ -48,10 +49,70 @@
 				return 'text-red-600';
 		}
 	}
+
+	function gradeToText(grade: string) {
+		switch (grade) {
+			case '1':
+				return 'Excellent';
+			case '2':
+				return 'Good';
+			case '3':
+				return 'Okay';
+			case '4':
+				return 'Needs to improve';
+			default:
+				return 'N/A';
+		}
+	}
+
+	function ogDescription(grade: string, name: string) {
+		switch (grade) {
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+				return `Check out ${name}'s "${gradeToText(grade)}" food safety rating on Seattle Safe Eats`;
+			default:
+				return `Check out ${name}'s food safety rating on Seattle Safe Eats`;
+		}
+	}
+
+	console.log(business);
 </script>
 
 <svelte:head>
-	<title>Seattle Safe Eats | {business.name}</title>
+	<title>Seattle Safe Eats - {business.name}</title>
+	<meta
+		name="description"
+		content="{business.name} food safety inspections and violations in Seattle. Get detailed insights into our safety ratings, inspection dates, and violations to make informed dining decisions."
+	/>
+
+	<!-- Facebook Meta Tags -->
+	<meta
+		property="og:url"
+		content={`https://www.seattlesafeeats.com/restaurant/${business.business_id}`}
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={`Seattle Safe Eats | ${business.name}`} />
+	<meta property="og:description" content={`${ogDescription(business.grade, business.name)}`} />
+	<meta
+		property="og:image"
+		content={`https://www.seattlesafeeats.com/og-${business.grade}.png?version=${business.latest_inspection?.date ?? new Date().toLocaleDateString()}`}
+	/>
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta property="twitter:domain" content="seattlesafeeats.com" />
+	<meta
+		property="twitter:url"
+		content={`https://www.seattlesafeeats.com/restaurant/${business.business_id}`}
+	/>
+	<meta name="twitter:title" content={`Seattle Safe Eats | ${business.name}`} />
+	<meta name="twitter:description" content={`${ogDescription(business.grade, business.name)}`} />
+	<meta
+		property="twitter:image"
+		content={`https://www.seattlesafeeats.com/og-${business.grade}.png?version=${business.latest_inspection?.date ?? new Date().toLocaleDateString()}`}
+	/>
 </svelte:head>
 
 <div class="flex flex-col flex-grow">

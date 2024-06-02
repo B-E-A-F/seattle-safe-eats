@@ -31,8 +31,16 @@ export type Business = {
 	program_identifier: string;
 	inspections: Inspection[];
 	zip_code: string;
+	latest_inspection: Inspection;
 	risk_category: string | undefined;
 };
+
+function toTitleCase(str: string) {
+	return str
+		.split(' ')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+		.join(' ');
+}
 
 function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 	const businessData = data[0]; // Grab the first business from the list
@@ -85,6 +93,8 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 	// Convert the inspections map to an array
 	const inspections = Array.from(inspectionsMap.values());
 
+	const latest_inspection = inspections.reduce((a, b) => (a.date > b.date ? a : b));
+
 	// The risk category is separated by " - " in the business description
 	const risk_category = businessData.description.split(' - ')[1] ?? undefined;
 
@@ -93,11 +103,12 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 		address: businessData.address,
 		city: businessData.city,
 		grade: businessData.grade,
-		name: businessData.program_identifier,
+		name: toTitleCase(businessData.program_identifier),
 		phone: businessData.phone,
 		program_identifier: businessData.program_identifier,
 		zip_code: businessData.zip_code,
 		risk_category,
+		latest_inspection,
 		inspections
 	};
 }

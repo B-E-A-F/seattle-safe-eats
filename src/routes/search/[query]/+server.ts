@@ -22,6 +22,14 @@ export type Business = {
 	last_violation: string;
 };
 
+function toTitleCase(str?: string) {
+	if (!str) return '';
+	return str
+		.split(' ')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+		.join(' ');
+}
+
 function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
 	return (
 		_.chain(data)
@@ -48,7 +56,7 @@ function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
 					address: latestInspection?.address,
 					city: latestInspection?.city,
 					grade: latestInspection?.grade,
-					name: latestInspection?.program_identifier,
+					name: toTitleCase(latestInspection?.program_identifier),
 					phone: latestInspection?.phone,
 					program_identifier: latestInspection?.program_identifier,
 					last_inspection: latestInspection?.inspection_date

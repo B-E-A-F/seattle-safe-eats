@@ -4,6 +4,36 @@
 
 <svelte:head>
 	<title>Seattle Safe Eats</title>
+	<meta
+		name="description"
+		content="Explore Seattle's restaurant food safety inspections with ease. Get detailed insights into violations, inspection dates, and safety ratings to make informed dining decisions."
+	/>
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content={`https://www.seattlesafeeats.com/`} />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Seattle Safe Eats" />
+	<meta
+		property="og:description"
+		content="Explore Seattle's restaurant food safety inspections with ease"
+	/>
+	<meta
+		property="og:image"
+		content={`https://www.seattlesafeeats.com/og-undefined.png?version=${new Date().toLocaleDateString()}`}
+	/>
+
+	<!-- Twitter Meta Tags -->
+	<meta property="twitter:url" content="https://www.seattlesafeeats.com/" />
+	<meta property="twitter:domain" content="seattlesafeeats.com" />
+	<meta property="twitter:title" content="Seattle Safe Eats" />
+	<meta
+		property="twitter:description"
+		content="Explore Seattle's restaurant food safety inspections with ease"
+	/>
+	<meta
+		property="twitter:image"
+		content={`https://www.seattlesafeeats.com/og-undefined.png?version=${new Date().toLocaleDateString()}`}
+	/>
 </svelte:head>
 
 <div class="flex flex-1 justify-center items-center flex-col gap-6">
