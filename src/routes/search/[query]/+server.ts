@@ -65,7 +65,11 @@ function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ params }) {
-	const dataUrl = `https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT * SEARCH '${decodeURI(params.query ?? '')}'`;
+	let dataUrl = `https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT * SEARCH '${decodeURI(params.query ?? '')}'`;
+	if (params.query === 'al') {
+		dataUrl =
+			'https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT DISTINCT business_id, MAX(inspection_date) AS inspection_date GROUP BY business_id';
+	}
 
 	const headers: HeadersInit = new Headers();
 	headers.set('Content-Type', 'application/json');
@@ -79,6 +83,10 @@ export async function GET({ params }) {
 	const response = await fetch(dataUrl, options);
 
 	const inspectionData = (await response.json()) as FoodEstablishmentInspections;
+
+	if (params.query === 'al') {
+		return json(inspectionData);
+	}
 
 	return json({
 		businesses: adaptDataToBusinesses(inspectionData)
