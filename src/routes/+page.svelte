@@ -23,6 +23,7 @@
 	/>
 
 	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta property="twitter:url" content="https://www.seattlesafeeats.com/" />
 	<meta property="twitter:domain" content="seattlesafeeats.com" />
 	<meta property="twitter:title" content="Seattle Safe Eats" />
