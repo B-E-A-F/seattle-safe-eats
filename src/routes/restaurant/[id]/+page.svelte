@@ -6,7 +6,6 @@
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from './$types';
 	import RiskCategoryInfo from './RiskCategoryInfo.svelte';
-	import { getRequest } from '@sveltejs/kit/node';
 
 	export let data: PageData;
 	const { business } = data;
@@ -76,8 +75,6 @@
 				return `Check out ${name}'s food safety rating on Seattle Safe Eats`;
 		}
 	}
-
-	console.log(business);
 </script>
 
 <svelte:head>
