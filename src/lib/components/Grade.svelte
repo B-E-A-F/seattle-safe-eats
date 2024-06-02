@@ -1,8 +1,8 @@
 <script lang="ts">
-	import excellent from '$lib/assets/excellent.gif';
-	import good from '$lib/assets/good.gif';
-	import okay from '$lib/assets/okay.gif';
-	import needstoimprove from '$lib/assets/needstoimprove.gif';
+	import excellent from '$lib/assets/excellent.png';
+	import good from '$lib/assets/good.png';
+	import okay from '$lib/assets/okay.png';
+	import needstoimprove from '$lib/assets/needstoimprove.png';
 	import GradeDial from './GradeDial.svelte';
 
 	export let grade: string | undefined;
@@ -14,7 +14,11 @@
 {#if grade === '1'}
 	<div class="flex font-bold justify-between">
 		<div class="flex gap-2 items-center">
-			<img class="rounded-full" alt="Smiley face representing excellent rating" src={excellent} />
+			<img
+				class="rounded-full w-[50px]"
+				alt="Smiley face representing excellent rating"
+				src={excellent}
+			/>
 			{#if withLabel}
 				<span>Excellent</span>
 			{/if}
@@ -32,7 +36,7 @@
 {:else if grade === '2'}
 	<div class="flex font-bold justify-between">
 		<div class="flex gap-2 items-center">
-			<img class="rounded-full" alt="Smiley face representing good rating" src={good} />
+			<img class="rounded-full w-[50px]" alt="Smiley face representing good rating" src={good} />
 			{#if withLabel}
 				<span>Good</span>
 			{/if}
@@ -49,7 +53,7 @@
 {:else if grade === '3'}
 	<div class="flex font-bold justify-between">
 		<div class="flex gap-2 items-center">
-			<img class="rounded-full" alt="Smiley face representing okay rating" src={okay} />
+			<img class="rounded-full w-[50px]" alt="Smiley face representing okay rating" src={okay} />
 			{#if withLabel}
 				<span>Okay</span>
 			{/if}
@@ -67,7 +71,7 @@
 	<div class="flex font-bold justify-between">
 		<div class="flex gap-2 items-center">
 			<img
-				class="rounded-full"
+				class="rounded-full w-[50px]"
 				alt="Smiley face representing needs to improve rating"
 				src={needstoimprove}
 			/>
