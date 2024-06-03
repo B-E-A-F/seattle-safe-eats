@@ -129,7 +129,7 @@
 		</a>
 		<Search className="w-full px-4 md:w-auto" />
 	</div>
-	<div class="flex flex-col p-4 gap-4">
+	<div class="flex flex-col p-4 gap-2">
 		<div class="flex flex-col">
 			<strong class="text-md font-bold">Restaurant: </strong>
 			<span class="text-2xl">{business.name}</span>
@@ -141,7 +141,7 @@
 				<h2 class="text-md">{business.phone}</h2>
 			{/if}
 			<div class="flex items-center gap-2">
-				<span class="text-md font-bold text-red-600">{business.risk_category}</span>
+				<span class="text-lg font-bold">{business.risk_category}</span>
 				<RiskCategoryInfo />
 			</div>
 		</div>
@@ -169,9 +169,6 @@
 							>
 							<span>{new Date(inspection.date).toLocaleDateString()}</span>
 						</div>
-						{#if parseInt(inspection.score) > 0}
-							<span>Score: {inspection.score}</span>
-						{/if}
 						<span>{inspection.type}</span>
 
 						{#if inspection.violations.length > 0}
@@ -188,16 +185,12 @@
 									<ul>
 										{#each inspection.violations as violation, i}
 											<li class="flex flex-col gap-2">
-												<span class="font-semibold">{violation.record_id}</span>
 												<div class="flex flex-row items-center gap-4">
 													<div class="w-6">
 														<Alert className={calculateViolationTypeColorClass(violation.type)} />
 													</div>
 													<span>
 														{violation.description}
-														<span class="text-red-600">
-															(+{violation.points})
-														</span>
 													</span>
 												</div>
 												{#if i < inspection.violations.length - 1}
