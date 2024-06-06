@@ -39,9 +39,13 @@
 
 <div class="flex flex-1 justify-center items-center flex-col gap-6">
 	<h1 class="text-6xl text-center">Seattle<br />Safe<br />Eats</h1>
+
 	<div class="md:max-w-96 w-full px-8">
 		<Search />
 	</div>
+	<h2 class="text-md text-gray-400 text-center px-8">
+		Explore Seattle's restaurant food safety inspections with ease
+	</h2>
 </div>
 
 <style lang="postcss">
