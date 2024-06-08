@@ -38,6 +38,7 @@
 </svelte:head>
 
 <div class="flex flex-1 justify-center items-center flex-col gap-6">
+	<div class="absolute blur-2xl bg-zinc-950 rounded-full w-96 h-96 -z-10" />
 	<h1 class="text-6xl text-center">Seattle<br />Safe<br />Eats</h1>
 
 	<div class="md:max-w-96 w-full px-8">
