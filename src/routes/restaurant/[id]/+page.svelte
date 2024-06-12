@@ -140,15 +140,16 @@
 					<span class="text-sm text-gray-400">{business.city}, WA {business.zip_code}</span>
 				</div>
 			</div>
-			{#if business.grade}
-				<div class="min-w-24 w-24">
-					<GradeSummary grade={business.grade} />
-				</div>
-			{/if}
+			<div class="min-w-24 w-24">
+				<GradeSummary grade={business.grade} />
+			</div>
 		</div>
-		<div class="flex flex-grow justify-center items-center">
-			<PointSummary inspections={business.inspections} />
-		</div>
+
+		{#if !(business.inspections.length === 1 && business.inspections[0].violations.length === 0)}
+			<div class="flex flex-grow justify-center items-center">
+				<PointSummary inspections={business.inspections} />
+			</div>
+		{/if}
 
 		<div class="flex justify-center">
 			<Timeline inspections={business.inspections} />
