@@ -5,7 +5,7 @@
 </script>
 
 <button
-	class="btn btn-link btn-circle w-5 h-5 text-primary-content"
+	class="btn btn-link btn-xs btn-circle text-primary-content"
 	on:click={() => dialog.showModal()}
 >
 	<Hint />

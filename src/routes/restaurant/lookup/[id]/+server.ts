@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentInspection.js';
 
-type Inspection = {
+export type Inspection = {
 	business_name: string;
 	closed_business: boolean;
 	date: string;

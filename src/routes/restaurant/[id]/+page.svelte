@@ -1,11 +1,13 @@
 <script lang="ts">
-	import Grade from '$lib/components/Grade.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import Share from '$lib/components/icons/Share.svelte';
 	import Alert from '$lib/components/icons/Alert.svelte';
+	import Sigma from '$lib/components/icons/Sigma.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from './$types';
-	import RiskCategoryInfo from './RiskCategoryInfo.svelte';
+	import GradeSummary from './GradeSummary.svelte';
+	import Timeline from './Timeline.svelte';
+	import PointSummary from './PointSummary.svelte';
 
 	export let data: PageData;
 	const { business } = data;
@@ -129,28 +131,30 @@
 		</a>
 		<Search className="w-full px-4 md:w-auto" />
 	</div>
-	<div class="flex flex-col p-4 gap-2">
-		<div class="flex flex-col">
-			<strong class="text-md font-bold">Restaurant: </strong>
-			<span class="text-2xl">{business.name}</span>
-			<strong class="text-md font-bold">Address: </strong>
-			<span class="text-md">{business.address}</span>
-			<span class="text-md">{business.city}, WA {business.zip_code}</span>
-			{#if business.phone}
-				<strong class="text-md font-bold">Phone number: </strong>
-				<h2 class="text-md">{business.phone}</h2>
-			{/if}
-			<div class="flex items-center gap-2">
-				<span class="text-lg font-bold">{business.risk_category}</span>
-				<RiskCategoryInfo />
+
+	<div class="flex flex-col p-4 gap-4">
+		<div class="flex flex-grow items-center justify-center flex-row">
+			<div class="flex flex-col max-w-80 pr-4">
+				<h1 class="text-4xl">{business.name}</h1>
+				<div class="flex flex-col">
+					<span class="text-sm text-gray-400">{business.address}</span>
+					<span class="text-sm text-gray-400">{business.city}, WA {business.zip_code}</span>
+				</div>
 			</div>
+			{#if business.grade}
+				<div class="min-w-24 w-24">
+					<GradeSummary grade={business.grade} />
+				</div>
+			{/if}
+		</div>
+		<div class="flex flex-grow justify-center items-center">
+			<PointSummary inspections={business.inspections} />
 		</div>
 
-		<div class="flex flex-col gap-2 md:max-w-96">
-			<strong class="text-md font-bold">Grade: </strong>
-			<Grade grade={business.grade} withLabel withDescription withDial />
+		<div class="flex justify-center">
+			<Timeline inspections={business.inspections} />
 		</div>
-		<div class="divider md:max-w-96">Inspections</div>
+		<div class="flex w-full self-center divider md:max-w-[450px]">Inspections</div>
 		{#if business.inspections.length === 1 && business.inspections[0].violations.length === 0}
 			<div
 				class="flex flex-1 flex-col items-center justify-center gap-4 md:items-start md:justify-start md:max-w-96"
@@ -160,51 +164,53 @@
 				</p>
 			</div>
 		{:else}
-			<ul class="flex flex-col gap-6 md:max-w-96">
-				{#each business.inspections as inspection}
-					<li class="flex flex-col gap-2 p-2 border border-primary">
-						<div class="flex justify-between">
-							<span class={calculateInspectionResultClass(inspection.result)}
-								>{inspection.result}</span
-							>
-							<span>{new Date(inspection.date).toLocaleDateString()}</span>
-						</div>
-						<span>{inspection.type}</span>
-
-						{#if inspection.violations.length > 0}
-							<div class="collapse collapse-arrow bg-base-200">
-								<input type="checkbox" class="peer" />
-								<div
-									class="collapse-title text-primary-content peer-checked:text-secondary-content"
+			<div class="flex flex-grow items-center justify-center">
+				<ul class="flex flex-col gap-6 md:max-w-96">
+					{#each business.inspections as inspection}
+						<li class="flex flex-col gap-2 p-2 border border-primary">
+							<div class="flex justify-between">
+								<span class={calculateInspectionResultClass(inspection.result)}
+									>{inspection.result}</span
 								>
-									Violations
-								</div>
-								<div
-									class="collapse-content text-primary-content peer-checked:text-secondary-content"
-								>
-									<ul>
-										{#each inspection.violations as violation, i}
-											<li class="flex flex-col gap-2">
-												<div class="flex flex-row items-center gap-4">
-													<div class="w-6">
-														<Alert className={calculateViolationTypeColorClass(violation.type)} />
-													</div>
-													<span>
-														{violation.description}
-													</span>
-												</div>
-												{#if i < inspection.violations.length - 1}
-													<div class="divider m-4" />
-												{/if}
-											</li>
-										{/each}
-									</ul>
-								</div>
+								<span>{new Date(inspection.date).toLocaleDateString()}</span>
 							</div>
-						{/if}
-					</li>
-				{/each}
-			</ul>
+							<span>{inspection.type}</span>
+
+							{#if inspection.violations.length > 0}
+								<div class="collapse collapse-arrow bg-base-200">
+									<input type="checkbox" class="peer" />
+									<div
+										class="collapse-title text-primary-content peer-checked:text-secondary-content"
+									>
+										Violations
+									</div>
+									<div
+										class="collapse-content text-primary-content peer-checked:text-secondary-content"
+									>
+										<ul>
+											{#each inspection.violations as violation, i}
+												<li class="flex flex-col gap-2">
+													<div class="flex flex-row items-center gap-4">
+														<div class="w-6">
+															<Alert className={calculateViolationTypeColorClass(violation.type)} />
+														</div>
+														<span>
+															{violation.description}
+														</span>
+													</div>
+													{#if i < inspection.violations.length - 1}
+														<div class="divider m-4" />
+													{/if}
+												</li>
+											{/each}
+										</ul>
+									</div>
+								</div>
+							{/if}
+						</li>
+					{/each}
+				</ul>
+			</div>
 		{/if}
 	</div>
 </div>
