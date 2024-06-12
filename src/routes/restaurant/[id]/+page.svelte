@@ -2,7 +2,6 @@
 	import Search from '$lib/components/Search.svelte';
 	import Share from '$lib/components/icons/Share.svelte';
 	import Alert from '$lib/components/icons/Alert.svelte';
-	import Sigma from '$lib/components/icons/Sigma.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from './$types';
 	import GradeSummary from './GradeSummary.svelte';
@@ -156,10 +155,8 @@
 		</div>
 		<div class="flex w-full self-center divider md:max-w-[450px]">Inspections</div>
 		{#if business.inspections.length === 1 && business.inspections[0].violations.length === 0}
-			<div
-				class="flex flex-1 flex-col items-center justify-center gap-4 md:items-start md:justify-start md:max-w-96"
-			>
-				<p class="px-8 text-center">
+			<div class="flex flex-grow flex-col items-center justify-center gap-4">
+				<p class="px-8 text-center md:max-w-96">
 					This restaurant has not received any inspections, or none could be found
 				</p>
 			</div>
