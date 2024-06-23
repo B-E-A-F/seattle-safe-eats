@@ -153,7 +153,7 @@
 				<button on:click={() => (showFour = false)} class="btn btn-link">Show All</button>
 			</div>
 		{:else}
-			<div class="flex flex-grow items-center justify-center">
+			<div class="flex flex-grow items-center justify-center mb-8">
 				<ul class="flex flex-col gap-6 md:max-w-96">
 					{#each business.inspections as inspection}
 						<Inspection {inspection} />
