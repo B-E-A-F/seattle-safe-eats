@@ -149,7 +149,7 @@
 					{/each}
 				</ul>
 			</div>
-			<div class="flex w-full self-center md:max-w-[450px] items-center justify-center">
+			<div class="flex w-full self-center md:max-w-[450px] items-center justify-center mb-8">
 				<button on:click={() => (showFour = false)} class="btn btn-link">Show All</button>
 			</div>
 		{:else}
