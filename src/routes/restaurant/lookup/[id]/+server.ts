@@ -49,6 +49,7 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 	const inspectionsMap = new Map<string, Inspection>();
 
 	data.forEach((item) => {
+		if (item.inspection_type.includes('Consultation')) return;
 		// If the inspection date is not already in the map, create a new inspection entry
 		if (!inspectionsMap.has(item.inspection_date)) {
 			inspectionsMap.set(item.inspection_date, {
