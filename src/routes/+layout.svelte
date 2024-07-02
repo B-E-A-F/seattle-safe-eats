@@ -2,7 +2,7 @@
 	import '../app.css';
 </script>
 
-<div class="flex flex-col h-screen w-screen">
+<div class="flex flex-grow flex-col">
 	<div class="flex flex-grow">
 		<slot />
 	</div>
