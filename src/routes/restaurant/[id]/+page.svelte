@@ -142,8 +142,8 @@
 				</p>
 			</div>
 		{:else if showFour}
-			<div class="flex items-center justify-center">
-				<ul class="flex flex-col items-center justify-center mb-8 gap-6 md:max-w-96">
+			<div class="flex items-center justify-center mb-8">
+				<ul class="flex flex-col items-center justify-center gap-6">
 					{#each business.inspections.slice(0, 4) as inspection}
 						<Inspection {inspection} />
 					{/each}
@@ -154,8 +154,8 @@
 				<button on:click={() => (showFour = false)} class="btn btn-link">Show All</button>
 			</div>
 		{:else}
-			<div class="flex items-center justify-center">
-				<ul class="flex flex-col items-center justify-center mb-8 gap-6 md:max-w-96">
+			<div class="flex items-center justify-center mb-8">
+				<ul class="flex flex-col items-center justify-center gap-6">
 					{#each business.inspections as inspection}
 						<Inspection {inspection} />
 					{/each}

@@ -26,7 +26,7 @@
 	}
 </script>
 
-<li class="w-[300px] md:w-[400px] flex flex-col gap-2 p-2 border border-primary w-full">
+<li class="w-[300px] md:w-[400px] flex flex-col gap-2 p-2 border border-primary">
 	<div class="flex justify-between">
 		<span class={calculateInspectionResultClass(inspection.result)}>{inspection.result}</span>
 		<span>{new Date(inspection.date).toLocaleDateString()}</span>
