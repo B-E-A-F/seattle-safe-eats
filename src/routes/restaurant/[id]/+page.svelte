@@ -142,19 +142,20 @@
 				</p>
 			</div>
 		{:else if showFour}
-			<div class="flex flex-grow items-center justify-center">
-				<ul class="flex flex-col gap-6 md:max-w-96">
+			<div class="flex items-center justify-center">
+				<ul class="flex flex-col items-center justify-center mb-8 gap-6 md:max-w-96">
 					{#each business.inspections.slice(0, 4) as inspection}
 						<Inspection {inspection} />
 					{/each}
 				</ul>
 			</div>
+
 			<div class="flex w-full self-center md:max-w-[450px] items-center justify-center mb-8">
 				<button on:click={() => (showFour = false)} class="btn btn-link">Show All</button>
 			</div>
 		{:else}
-			<div class="flex flex-grow items-center justify-center mb-8">
-				<ul class="flex flex-col gap-6 md:max-w-96">
+			<div class="flex items-center justify-center">
+				<ul class="flex flex-col items-center justify-center mb-8 gap-6 md:max-w-96">
 					{#each business.inspections as inspection}
 						<Inspection {inspection} />
 					{/each}
