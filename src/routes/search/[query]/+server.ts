@@ -54,9 +54,9 @@ function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
 				return {
 					business_id: latestInspection?.business_id,
 					address: latestInspection?.address,
-					city: latestInspection?.city,
+					city: toTitleCase(latestInspection?.city),
 					grade: latestInspection?.grade,
-					name: toTitleCase(latestInspection?.program_identifier),
+					name: toTitleCase(latestInspection?.name),
 					phone: latestInspection?.phone,
 					program_identifier: latestInspection?.program_identifier,
 					last_inspection: latestInspection?.inspection_date

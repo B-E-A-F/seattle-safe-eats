@@ -2,6 +2,9 @@
 	import Search from '$lib/components/Search.svelte';
 	import Grade from '$lib/components/Grade.svelte';
 	import type { PageData } from './$types';
+	import SearchGrade from './SearchGrade.svelte';
+	import Building from '$lib/components/icons/Building.svelte';
+	import MapPinned from '$lib/components/icons/MapPinned.svelte';
 
 	export let data: PageData;
 </script>
@@ -56,23 +59,30 @@
 			<Grade grade="4" />
 		</div>
 	{:else}
-		<ul>
+		<ul class="flex flex-col gap-4 items-center p-4">
 			{#each data.businesses as business}
-				<li class="flex flex-col p-4">
-					<div class="flex items-center gap-4">
-						<Grade grade={business.grade} />
-						<div class="flex flex-col">
-							<a class="link" href={`/restaurant/${business.business_id}`}>{business.name}</a>
-							<span>{business.city}</span>
-							<span>{business.address}</span>
+				<li class="flex border border-base-200 w-full md:max-w-[450px] hover:bg-zinc-950">
+					<a class="flex gap-4 w-full h-full p-4" href={`/restaurant/${business.business_id}`}>
+						<SearchGrade grade={business.grade} />
+						<div class="flex flex-col gap-2">
+							<div class="flex flex-col">
+								<!-- <a class="link" href={`/restaurant/${business.business_id}`}>{business.name}</a> -->
+								<span class="font-bold text-xl text-nowrap text-ellipsis line-clamp-1"
+									>{business.name}</span
+								>
+								<div class="flex flex-col mt-2 gap-2">
+									<span class="flex gap-2"><Building /> {business.city}</span>
+									<span class="flex gap-2"><MapPinned />{business.address}</span>
+								</div>
+							</div>
 						</div>
-					</div>
-					<span class="text-info-content">
+						<!-- <span class="text-info-content">
 						{`Last inspection: ${business.last_inspection ? business.last_inspection : 'No inspections'}`}
 					</span>
 					<span class="text-info-content">
 						{`Last violation: ${business.last_violation ? business.last_violation : 'No violations'}`}
-					</span>
+					</span>  -->
+					</a>
 				</li>
 			{/each}
 		</ul>
