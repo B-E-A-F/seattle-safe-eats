@@ -64,12 +64,10 @@
 				<li class="flex border border-base-200 w-full md:max-w-[450px] hover:bg-zinc-950">
 					<a class="flex gap-4 w-full h-full p-4" href={`/restaurant/${business.business_id}`}>
 						<SearchGrade grade={business.grade} />
-						<div class="flex flex-col gap-2">
+						<div class="flex flex-col gap-2 overflow-x-hidden">
 							<div class="flex flex-col">
 								<!-- <a class="link" href={`/restaurant/${business.business_id}`}>{business.name}</a> -->
-								<span class="font-bold text-xl text-nowrap text-ellipsis line-clamp-1"
-									>{business.name}</span
-								>
+								<span class="font-bold text-xl truncate">{business.name}</span>
 								<div class="flex flex-col mt-2 gap-2">
 									<span class="flex gap-2"><Building /> {business.city}</span>
 									<span class="flex gap-2"><MapPinned />{business.address}</span>
