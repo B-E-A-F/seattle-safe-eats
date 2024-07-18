@@ -19,7 +19,7 @@
 			{#if i !== 0}
 				<hr />
 			{/if}
-			<div class="timeline-start">{new Date(inspection.date).toLocaleDateString()}</div>
+			<div class="text-sm md:text-base timeline-start">{new Date(inspection.date).toLocaleDateString()}</div>
 			<div class="timeline-middle">
 				<CircleCheck fill={inspection.result === 'Satisfactory' ? green : red} />
 			</div>
