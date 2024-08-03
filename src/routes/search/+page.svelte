@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SearchHeader from './SearchHeader.svelte';
+	import SearchHeader from '$lib/components/SearchHeader.svelte';
 	import Grade from '$lib/components/Grade.svelte';
 	import type { PageData } from './$types';
 	import SearchGrade from './SearchGrade.svelte';
