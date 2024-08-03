@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Grade from '$lib/components/Grade.svelte';
+	import GradeFace from './GradeFace.svelte';
 	import GradeDescription from '$lib/components/GradeDescription.svelte';
 	import GradeDial from '$lib/components/GradeDial.svelte';
 	import GradeLabel from '$lib/components/GradeLabel.svelte';
@@ -9,10 +9,10 @@
 </script>
 
 <button
-	class="flex flex-col items-center gap-3 rounded-md border p-3 border-secondary bg-base-200"
+	class="flex flex-col items-center gap-3 card p-2 card-bordered"
 	on:click={() => dialog.showModal()}
 >
-	<Grade {grade} />
+	<GradeFace {grade} />
 	{#if grade}
 		<GradeDial {grade} />
 	{/if}
@@ -25,7 +25,7 @@
 		</form>
 		<div class="flex flex-col mt-2">
 			<div class="flex items-center gap-2">
-				<Grade {grade} />
+				<GradeFace {grade} />
 				<GradeLabel {grade} />
 			</div>
 			<div class="divider my-2" />

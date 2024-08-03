@@ -7,6 +7,10 @@
 	import Timeline from './Timeline.svelte';
 	import PointSummary from './PointSummary.svelte';
 	import Inspection from './Inspection.svelte';
+	import { ArrowDownToLine } from 'lucide-svelte';
+	import Building from '$lib/components/icons/Building.svelte';
+	import MapPinned from '$lib/components/icons/MapPinned.svelte';
+	import { Phone } from 'lucide-svelte';
 
 	export let data: PageData;
 	const { business } = data;
@@ -93,7 +97,8 @@
 	/>
 </svelte:head>
 
-<div class="flex flex-col flex-grow">
+<div class="flex flex-col justify-center w-full">
+	<SearchHeader />
 	<div class="flex justify-between md:hidden">
 		<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
 			<BackArrow />
@@ -103,31 +108,32 @@
 		</button>
 	</div>
 
-	<SearchHeader />
-
-	<div class="flex flex-col p-4 gap-4">
-		<div class="flex flex-grow items-center justify-center flex-row">
-			<div class="flex flex-col max-w-80 pr-4">
-				<h1 class="text-4xl">{business.name}</h1>
-				<div class="flex flex-col">
-					<span class="text-sm text-gray-400">{business.address}</span>
-					<span class="text-sm text-gray-400">{business.city}, WA {business.zip_code}</span>
-				</div>
-			</div>
-			<div class="min-w-24 w-24">
+	<div class="flex flex-col p-4 gap-8 w-full lg:w-3/4 xl:w-1/2 h-full mx-auto flex-grow pt-8">
+		<div class="flex flex-grow gap-4 items-center justify-between flex-row w-full max-h-40">
+			<div class="min-w-24 w-1/2">
 				<GradeSummary grade={business.grade} />
+			</div>
+			<div class="flex flex-col w-full justify-between h-full">
+				<h1 class="text-4xl">{business.name}</h1>
+
+				<div class="flex flex-col justify-evenly w-full overflow-hidden h-full">
+					<span class="flex gap-2"
+						><Building class="text-accent" /> {business.city}, WA {business.zip_code}</span
+					>
+					<span class="flex gap-2"><MapPinned class="text-accent" />{business.address}</span>
+					<span class="flex gap-2"
+						><Phone class="text-accent" />{business.phone != undefined
+							? business.phone
+							: 'no phone #'}</span
+					>
+				</div>
 			</div>
 		</div>
 
 		{#if !(business.inspections.length === 1 && business.inspections[0].violations.length === 0)}
-			<div class="flex flex-grow justify-center items-center">
-				<PointSummary inspections={business.inspections} />
-			</div>
+			<PointSummary inspections={business.inspections} />
 		{/if}
-
-		<div class="flex justify-center">
-			<Timeline inspections={business.inspections} />
-		</div>
+		<Timeline inspections={business.inspections} />
 		<div class="flex w-full self-center divider md:max-w-[450px]">Inspections</div>
 		{#if business.inspections.length === 1 && business.inspections[0].violations.length === 0}
 			<div class="flex flex-grow flex-col items-center justify-center gap-4">
@@ -144,8 +150,9 @@
 				</ul>
 			</div>
 
-			<div class="flex w-full self-center md:max-w-[450px] items-center justify-center mb-8">
-				<button on:click={() => (showFour = false)} class="btn btn-link">Show All</button>
+			<div class="flex w-full self-center items-center justify-center mb-8">
+				<button on:click={() => (showFour = false)} class="btn">Show All <ArrowDownToLine /></button
+				>
 			</div>
 		{:else}
 			<div class="flex items-center justify-center mb-8">

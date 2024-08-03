@@ -29,7 +29,7 @@
 	);
 </script>
 
-<div class="flex flex-1 md:max-w-[450px]">
+<div class="flex">
 	<div class="flex flex-1 gap-2 border-secondary border-r border-t border-b py-2 justify-center">
 		<Alert className={'text-red-600'} />
 		<span>{redCount}</span>

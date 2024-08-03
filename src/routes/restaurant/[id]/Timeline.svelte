@@ -13,22 +13,26 @@
 	const green = 'oklch(0.519752 0.176858 142.495)';
 </script>
 
-<ul class="timeline">
-	{#each inspections as inspection, i}
-		<li>
-			{#if i !== 0}
-				<hr />
-			{/if}
-			<div class="text-sm md:text-base timeline-start">{new Date(inspection.date).toLocaleDateString()}</div>
-			<div class="timeline-middle">
-				<CircleCheck fill={inspection.result === 'Satisfactory' ? green : red} />
-			</div>
-			<div class="timeline-end timeline-box">
-				{inspection.result === 'Satisfactory' ? 'PASS' : 'FAIL'}
-			</div>
-			{#if i !== inspections.length - 1}
-				<hr />
-			{/if}
-		</li>
-	{/each}
-</ul>
+<div class="flex justify-center w-full">
+	<ul class="timeline">
+		{#each inspections as inspection, i}
+			<li>
+				{#if i !== 0}
+					<hr />
+				{/if}
+				<div class="text-sm md:text-base timeline-start">
+					{new Date(inspection.date).toLocaleDateString()}
+				</div>
+				<div class="timeline-middle">
+					<CircleCheck fill={inspection.result === 'Satisfactory' ? green : red} />
+				</div>
+				<div class="timeline-end timeline-box">
+					{inspection.result === 'Satisfactory' ? 'PASS' : 'FAIL'}
+				</div>
+				{#if i !== inspections.length - 1}
+					<hr />
+				{/if}
+			</li>
+		{/each}
+	</ul>
+</div>

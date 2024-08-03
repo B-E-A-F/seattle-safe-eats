@@ -72,9 +72,7 @@
 			class="w-full lg:w-3/4 xl:w-1/2 h-full flex flex-col gap-8 items-center py-4 max-w-4xl justify-center mx-auto px-4"
 		>
 			{#each data.businesses as business}
-				<li
-					class="card bg-base-100 py-4 w-full shadow-xl border border-base-content/20 shadow-gray-900/10"
-				>
+				<li class="card bg-base-100 py-4 w-full shadow-lg border border-base-content/20">
 					<a
 						class="flex flex-col gap-4 w-full h-full p-2 justify-evenly"
 						href={`/restaurant/${business.business_id}`}
@@ -85,8 +83,10 @@
 								<SearchGrade grade={business.grade} />
 								<span class="text-center">{gradeToText(business.grade)}</span>
 							</div>
-							<div class="flex flex-col justify-evenly w-1/2 overflow-hidden">
-								<span class="flex gap-2"><Building class="text-accent" /> {business.city}</span>
+							<div class="flex flex-col justify-evenly w-1/2 overflow-hidden h-full">
+								<span class="flex gap-2"
+									><Building class="text-accent" /> {business.city}, WA {business.zip_code}</span
+								>
 								<span class="flex gap-2"><MapPinned class="text-accent" />{business.address}</span>
 								<span class="flex gap-2"
 									><Phone class="text-accent" />{business.phone != undefined
