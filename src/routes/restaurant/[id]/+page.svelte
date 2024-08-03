@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Search from '$lib/components/Search.svelte';
+	import SearchHeader from '$lib/components/SearchHeader.svelte';
 	import Share from '$lib/components/icons/Share.svelte';
 	import BackArrow from '$lib/components/icons/BackArrow.svelte';
 	import type { PageData } from './$types';
@@ -102,14 +102,8 @@
 			<Share />
 		</button>
 	</div>
-	<div
-		class="hidden md:flex flex-col gap-2 border-b-2 border-b-base-200 justify-center items-center py-4 md:flex-row md:justify-normal md:p-4"
-	>
-		<a href="/">
-			<h1 class="text-2xl">Seattle Safe Eats</h1>
-		</a>
-		<Search className="w-full px-4 md:w-auto" />
-	</div>
+
+	<SearchHeader />
 
 	<div class="flex flex-col p-4 gap-4">
 		<div class="flex flex-grow items-center justify-center flex-row">

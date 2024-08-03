@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Grade from '$lib/components/Grade.svelte';
+	import { cn } from '$lib/utils';
 
 	export let grade: string | undefined;
 
@@ -20,7 +21,10 @@
 </script>
 
 <div
-	class={`flex h-32 min-w-24  rounded-md items-center justify-center ${calculateGradeClass(grade)}`}
+	class={cn(
+		calculateGradeClass(grade),
+		'flex rounded-full items-center justify-center opacity-75 m-2'
+	)}
 >
 	<Grade {grade} />
 </div>

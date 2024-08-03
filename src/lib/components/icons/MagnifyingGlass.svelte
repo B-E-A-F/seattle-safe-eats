@@ -1,8 +1,15 @@
+<script>
+	export let width = 8;
+	export let height = 8;
+</script>
+
 <svg
+	{width}
+	{height}
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 16 16"
 	fill="currentColor"
-	class="w-4 h-4 opacity-70"
+	class="opacity-70"
 >
 	<path
 		fill-rule="evenodd"
