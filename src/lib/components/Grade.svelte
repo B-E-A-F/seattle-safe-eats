@@ -92,7 +92,7 @@
 {:else}
 	<div class="flex items-center gap-2 font-bold">
 		<div
-			class="bg-neutral w-[50px] h-[50px] rounded-full text-xl font-semibold flex items-center justify-center"
+			class="bg-neutral text-neutral-content w-[50px] h-[50px] rounded-full text-xl font-semibold flex items-center justify-center"
 		>
 			N/A
 		</div>

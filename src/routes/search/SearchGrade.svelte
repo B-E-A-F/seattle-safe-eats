@@ -23,7 +23,7 @@
 <div
 	class={cn(
 		calculateGradeClass(grade),
-		'flex rounded-full items-center justify-center opacity-75 m-2'
+		'flex rounded-full items-center justify-center opacity-75 m-2 p-1'
 	)}
 >
 	<Grade {grade} />

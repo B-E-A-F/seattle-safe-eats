@@ -1,12 +1,7 @@
 <script>
-	export let width = '1300pt';
-	export let height = '375pt';
-	export let fill = 'none';
-	export let stroke = 'currentColor';
-	export let strokeWidth = '1';
-	export let strokeLinecap = 'round';
-	export let strokeLinejoin = 'round';
-	export let className = '';
+	export let width = '100%';
+	export let height = '100%';
+	export let svgGProps = '';
 </script>
 
 <svg
@@ -15,14 +10,12 @@
 	{height}
 	viewBox="0 0 1300.000000 375.000000"
 	preserveAspectRatio="xMidYMid meet"
-	{fill}
-	{stroke}
-	stroke-width={strokeWidth}
-	stroke-linecap={strokeLinecap}
-	stroke-linejoin={strokeLinejoin}
-	class={className}
 >
-	<g transform="translate(0.000000,375.000000) scale(0.100000,-0.100000)" {fill} stroke="none">
+	<g
+		transform="translate(0.000000,375.000000) scale(0.100000,-0.100000)"
+		class={svgGProps}
+		stroke="none"
+	>
 		<path
 			d="M4130 3716 c0 -19 -4 -38 -10 -41 -5 -3 -10 -21 -10 -39 0 -36 -38
       -86 -65 -86 -9 0 -26 -9 -38 -20 -18 -17 -20 -24 -9 -40 7 -11 12 -22 12 -24

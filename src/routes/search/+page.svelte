@@ -69,29 +69,31 @@
 		</div>
 	{:else}
 		<ul
-			class="w-full h-full flex flex-col gap-8 items-center py-4 max-w-4xl justify-center mx-auto px-4"
+			class="w-full lg:w-3/4 xl:w-1/2 h-full flex flex-col gap-8 items-center py-4 max-w-4xl justify-center mx-auto px-4"
 		>
 			{#each data.businesses as business}
 				<li
 					class="card bg-base-100 py-4 w-full shadow-xl border border-base-content/20 shadow-gray-900/10"
 				>
 					<a
-						class="flex gap-4 w-full h-full p-2 justify-evenly"
+						class="flex flex-col gap-4 w-full h-full p-2 justify-evenly"
 						href={`/restaurant/${business.business_id}`}
 					>
-						<div class="flex flex-col items-center justify-center w-1/4">
-							<SearchGrade grade={business.grade} />
-							<span class="text-white text-center">{gradeToText(business.grade)}</span>
-						</div>
-						<div class="flex flex-col gap-2 text-neutral-content w-full overflow-hidden">
-							<span class="font-bold text-xl truncate text-base-content">{business.name}</span>
-							<span class="flex gap-2"><Building class="text-accent" /> {business.city}</span>
-							<span class="flex gap-2"><MapPinned class="text-accent" />{business.address}</span>
-							<span class="flex gap-2"
-								><Phone class="text-accent" />{business.phone != undefined
-									? business.phone
-									: 'no phone #'}</span
-							>
+						<span class="font-bold text-xl truncate mx-auto">{business.name}</span>
+						<div class="flex w-full">
+							<div class="flex flex-col items-center justify-center w-1/2">
+								<SearchGrade grade={business.grade} />
+								<span class="text-center">{gradeToText(business.grade)}</span>
+							</div>
+							<div class="flex flex-col justify-evenly w-1/2 overflow-hidden">
+								<span class="flex gap-2"><Building class="text-accent" /> {business.city}</span>
+								<span class="flex gap-2"><MapPinned class="text-accent" />{business.address}</span>
+								<span class="flex gap-2"
+									><Phone class="text-accent" />{business.phone != undefined
+										? business.phone
+										: 'no phone #'}</span
+								>
+							</div>
 						</div>
 					</a>
 				</li>
