@@ -73,31 +73,34 @@
 	ogDescription={ogDescription(business.grade, business.name)}
 />
 
-<div class="flex justify-between md:hidden">
-	<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
-		<ArrowLeft />
-	</button>
-	<button class="btn btn-ghost" on:click={shareLink}>
-		<Share />
-	</button>
-</div>
+<div
+	class="flex flex-col gap-8 w-full lg:w-3/4 xl:w-1/2 h-full mx-auto flex-grow pb-16 md:pt-16 px-4 md:px-0"
+>
+	<div>
+		<div class="flex justify-between md:hidden">
+			<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
+				<ArrowLeft />
+			</button>
+			<button class="btn btn-ghost" on:click={shareLink}>
+				<Share />
+			</button>
+		</div>
+		<div class="flex flex-grow gap-4 items-center justify-between flex-row w-full max-h-40">
+			<GradeSummary grade={business.grade} />
+			<div class="flex flex-col w-full justify-between h-full">
+				<h1 class="text-4xl">{business.name}</h1>
 
-<div class="flex flex-col gap-8 w-full lg:w-3/4 xl:w-1/2 h-full mx-auto flex-grow py-16">
-	<div class="flex flex-grow gap-4 items-center justify-between flex-row w-full max-h-40">
-		<GradeSummary grade={business.grade} />
-		<div class="flex flex-col w-full justify-between h-full">
-			<h1 class="text-4xl">{business.name}</h1>
-
-			<div class="flex flex-col justify-evenly w-full overflow-hidden h-full">
-				<span class="flex gap-2"
-					><Building2 class="text-accent" /> {business.city}, WA {business.zip_code}</span
-				>
-				<span class="flex gap-2"><MapPinned class="text-accent" />{business.address}</span>
-				<span class="flex gap-2"
-					><Phone class="text-accent" />{business.phone != undefined
-						? business.phone
-						: 'no phone #'}</span
-				>
+				<div class="flex flex-col justify-evenly w-full overflow-hidden h-full">
+					<span class="flex gap-2"
+						><Building2 class="text-accent" /> {business.city}, WA {business.zip_code}</span
+					>
+					<span class="flex gap-2"><MapPinned class="text-accent" />{business.address}</span>
+					<span class="flex gap-2"
+						><Phone class="text-accent" />{business.phone != undefined
+							? business.phone
+							: 'no phone #'}</span
+					>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -119,12 +122,9 @@
 				<Inspection {inspection} />
 			{/each}
 		</ul>
-
-		<div class="flex self-center items-center justify-center mb-8">
-			<button on:click={() => (showFour = false)} class="btn btn-primary"
-				>Show All <ArrowDownToLine /></button
-			>
-		</div>
+		<button on:click={() => (showFour = false)} class="btn btn-primary mx-auto"
+			>Show All <ArrowDownToLine /></button
+		>
 	{:else}
 		<ul class="flex flex-col items-center justify-center gap-6">
 			{#each business.inspections as inspection}
