@@ -23,9 +23,8 @@
 				<span class="inline-block md:text-2xl"> Seattle Safe Eats </span>
 			</a>
 		</div>
-		<div class="flex flex-1 items-center justify-end space-x-2">
+		<div class="flex flex-1 items-center justify-between md:justify-end space-x-2">
 			<form class={className} on:submit|preventDefault={navigateSearch} action=".">
-				<!-- <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" /> -->
 				<label class="input input-bordered input-ghost flex items-center gap-2">
 					<input
 						type="search"

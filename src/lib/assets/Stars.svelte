@@ -1,11 +1,13 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	export let width = '100%';
 	export let height = '100%';
 	export let svgGProps = '';
 
 	// Controls for star size
-	const minScale = 0.3; // Minimum scale for stars
-	const maxScale = 0.9; // Maximum scale for stars
+	const minScale = 0.5; // Minimum scale for stars
+	const maxScale = 1.5; // Maximum scale for stars
 
 	// Controls for vertical range of star spawning (0 to 1)
 	export let minHeight = 0; // Minimum height fraction
@@ -13,9 +15,33 @@
 
 	// Controls for star count
 	const starCount = 50; // Number of stars to generate
+
+	// Variables for screen dimensions
+	let screenWidth = 800;
+	let screenHeight = 800;
+
+	// Update screen dimensions on mount and on resize
+	onMount(() => {
+		const updateDimensions = () => {
+			screenWidth = window.innerWidth;
+			screenHeight = window.innerHeight;
+		};
+
+		updateDimensions();
+		window.addEventListener('resize', updateDimensions);
+
+		return () => {
+			window.removeEventListener('resize', updateDimensions);
+		};
+	});
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" {width} {height}>
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox={`0 0 ${screenWidth} ${screenHeight}`}
+	{width}
+	{height}
+>
 	<defs>
 		<radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
 			<stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />
@@ -32,7 +58,7 @@
 	</defs>
 	<g class={svgGProps} stroke="none">
 		<!-- Generate stars -->
-		{#each Array.from( { length: starCount }, () => ({ x: Math.random() * 800, y: Math.random() * 800 * (maxHeight - minHeight) + 800 * minHeight, scale: Math.random() * (maxScale - minScale) + minScale }) ) as star}
+		{#each Array.from( { length: starCount }, () => ({ x: Math.random() * screenWidth, y: Math.random() * screenHeight * (maxHeight - minHeight) + screenHeight * minHeight, scale: Math.random() * (maxScale - minScale) + minScale }) ) as star}
 			<use href="#star" x={star.x} y={star.y} width={24 * star.scale} height={24 * star.scale} />
 		{/each}
 	</g>
