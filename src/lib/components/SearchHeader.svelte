@@ -1,7 +1,8 @@
 <script lang="ts">
 	import SpaceNeedle from '$lib/components/icons/SpaceNeedle.svelte';
-	import MagnifyingGlass from '$lib/components/icons/MagnifyingGlass.svelte';
+	// import MagnifyingGlass from '$lib/components/icons/MagnifyingGlass.svelte';
 
+	import { Search } from 'lucide-svelte';
 	export let className: string | undefined = undefined;
 	let search = '';
 
@@ -17,7 +18,7 @@
 	<div class="container flex h-14 max-w-screen-2xl items-center w-full">
 		<div class="mr-4">
 			<a href="/" class="mr-6 flex items-center space-x-2">
-				<SpaceNeedle class="h-8 w-8" fill="currentColor" width="36" height="36" />
+				<SpaceNeedle fill="currentColor" width="36" height="36" />
 				<span class="inline-block md:text-2xl"> Seattle Safe Eats </span>
 			</a>
 		</div>
@@ -32,7 +33,7 @@
 						bind:value={search}
 					/>
 					{#if search.length === 0}
-						<MagnifyingGlass width="24" height="24" />
+						<Search width="24" height="24" />
 					{/if}
 				</label>
 			</form>

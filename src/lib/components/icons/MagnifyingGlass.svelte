@@ -1,6 +1,6 @@
-<script>
-	export let width = 8;
-	export let height = 8;
+<script lang="ts">
+	export let width: string | number = 8;
+	export let height: string | number = 8;
 </script>
 
 <svg

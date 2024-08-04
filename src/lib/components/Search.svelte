@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MagnifyingGlass from './icons/MagnifyingGlass.svelte';
+	import MagnifyingGlass from '$lib/components/icons/MagnifyingGlass.svelte';
 
 	export let className: string | undefined = undefined;
 	let search = '';
@@ -11,7 +11,6 @@
 </script>
 
 <form class={className} on:submit|preventDefault={navigateSearch} action=".">
-	<!-- <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" /> -->
 	<label class="input input-bordered border-2 flex items-center gap-2">
 		<input type="search" class="grow" placeholder="Search for a restaurant" bind:value={search} />
 		{#if search.length === 0}

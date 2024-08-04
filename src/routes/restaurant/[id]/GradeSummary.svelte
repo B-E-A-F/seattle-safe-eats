@@ -8,8 +8,9 @@
 	let dialog: HTMLDialogElement;
 </script>
 
+<!-- The Display on the Restaurant Page -->
 <button
-	class="flex flex-col items-center gap-3 card p-2 card-bordered"
+	class="flex flex-col items-center gap-3 p-2 min-w-24 w-1/2 card card-bordered bg-base-100"
 	on:click={() => dialog.showModal()}
 >
 	<GradeFace {grade} />
@@ -18,8 +19,9 @@
 	{/if}
 </button>
 
+<!-- The Modal Dialog for when the Button is Clicked -->
 <dialog class="modal" bind:this={dialog}>
-	<div class="modal-box border rounded-md max-h-80 md:max-h-full">
+	<div class="modal-box max-h-80 md:max-h-full">
 		<form method="dialog">
 			<button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 		</form>

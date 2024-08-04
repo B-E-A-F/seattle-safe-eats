@@ -34,10 +34,10 @@
 	<span>{inspection.type}</span>
 
 	{#if inspection.violations.length > 0}
-		<div class="collapse collapse-arrow bg-base-100">
+		<div class="collapse collapse-arrow card card-bordered border border-base-content/20">
 			<input type="checkbox" class="peer" />
-			<div class="collapse-title bg-base-200 peer-checked:bg-base-300">Violations</div>
-			<ul class="collapse-content bg-base-200 peer-checked:bg-base-300">
+			<div class="collapse-title">Violations</div>
+			<ul class="collapse-content">
 				{#each inspection.violations as violation, i}
 					<li class="flex flex-col gap-2">
 						<div class="flex flex-row items-center gap-4">

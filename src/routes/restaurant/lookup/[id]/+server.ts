@@ -115,7 +115,7 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 }
 
 /** @type {import('./$types').RequestHandler} */
-export async function GET({ params }) {
+export async function GET({ params }: { params: { id: string } }) {
 	const url = `https://data.kingcounty.gov/resource/f29f-zza5.json?business_id=${params.id}`;
 
 	const headers: HeadersInit = new Headers();

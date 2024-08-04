@@ -1,7 +1,7 @@
 import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentInspection.js';
 
 /** @type {import('./$types').RequestHandler} */
-export async function GET({ fetch }) {
+export async function GET({ fetch }: { fetch: typeof globalThis.fetch }) {
 	const res = await fetch(`/search/al`);
 	const inspections = (await res.json()) as FoodEstablishmentInspections;
 	console.log(
@@ -17,13 +17,13 @@ export async function GET({ fetch }) {
 			xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
 		>
             ${inspections
-							.map(
-								({ business_id, inspection_date }) => `<url>
+				.map(
+					({ business_id, inspection_date }) => `<url>
             <loc>https://www.seattlesafeeats.com/restaurant/${business_id}</loc>
             <lastmod>${inspection_date ? new Date(inspection_date).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10)}</lastmod>
             </url>`
-							)
-							.join('')}
+				)
+				.join('')}
                     <url>
                     <loc>https://www.seattlesafeeats.com/</loc>
                     <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>

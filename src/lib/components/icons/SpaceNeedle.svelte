@@ -1,12 +1,13 @@
-<script>
+<script lang="ts">
 	export let width = '24';
 	export let height = '24';
 	export let fill = 'none';
 	export let stroke = 'currentColor';
 	export let strokeWidth = '2';
-	export let strokeLinecap = 'round';
-	export let strokeLinejoin = 'round';
-	export let className = '';
+	export let strokeLinecap: 'round' | 'square' | 'butt' = 'round';
+	export let strokeLinejoin: 'round' | 'bevel' | 'miter' = 'round';
+	let className = '';
+	export { className as class };
 </script>
 
 <svg
