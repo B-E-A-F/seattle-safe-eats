@@ -18,7 +18,7 @@
 		<div class="mr-4">
 			<a href="/" class="mr-6 flex items-center space-x-2">
 				<SpaceNeedle class="h-8 w-8" fill="currentColor" width="36" height="36" />
-				<span class="inline-block font-bold"> Seattle Safe Eats </span>
+				<span class="inline-block md:text-2xl"> Seattle Safe Eats </span>
 			</a>
 		</div>
 		<div class="flex flex-1 items-center justify-end space-x-2">

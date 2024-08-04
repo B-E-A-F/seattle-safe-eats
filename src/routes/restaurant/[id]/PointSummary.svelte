@@ -31,11 +31,11 @@
 
 <div class="flex">
 	<div class="flex flex-1 gap-2 border-secondary border-r border-t border-b py-2 justify-center">
-		<Alert className={'text-red-600'} />
+		<Alert className={'text-error'} />
 		<span>{redCount}</span>
 	</div>
 	<div class="flex flex-1 gap-2 border-secondary border-r border-t border-b py-2 justify-center">
-		<Alert className={'text-blue-600'} />
+		<Alert className={'text-info'} />
 		<span>{blueCount}</span>
 	</div>
 	<div class="flex flex-1 gap-2 border-secondary border-t border-b py-2 justify-center">

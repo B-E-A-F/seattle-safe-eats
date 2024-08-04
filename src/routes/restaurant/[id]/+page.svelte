@@ -108,7 +108,7 @@
 		</button>
 	</div>
 
-	<div class="flex flex-col p-4 gap-8 w-full lg:w-3/4 xl:w-1/2 h-full mx-auto flex-grow pt-8">
+	<div class="flex flex-col gap-8 w-full lg:w-3/4 xl:w-1/2 h-full mx-auto flex-grow py-16">
 		<div class="flex flex-grow gap-4 items-center justify-between flex-row w-full max-h-40">
 			<div class="min-w-24 w-1/2">
 				<GradeSummary grade={business.grade} />
@@ -131,37 +131,33 @@
 		</div>
 
 		{#if !(business.inspections.length === 1 && business.inspections[0].violations.length === 0)}
-			<PointSummary inspections={business.inspections} />
+			<div class="pt-4"><PointSummary inspections={business.inspections} /></div>
 		{/if}
 		<Timeline inspections={business.inspections} />
-		<div class="flex w-full self-center divider md:max-w-[450px]">Inspections</div>
+		<div class="flex w-full self-center divider">Inspections</div>
 		{#if business.inspections.length === 1 && business.inspections[0].violations.length === 0}
 			<div class="flex flex-grow flex-col items-center justify-center gap-4">
-				<p class="px-8 text-center md:max-w-96">
+				<p class="text-center">
 					This restaurant has not received any inspections, or none could be found
 				</p>
 			</div>
 		{:else if showFour}
-			<div class="flex items-center justify-center mb-8">
-				<ul class="flex flex-col items-center justify-center gap-6">
-					{#each business.inspections.slice(0, 4) as inspection}
-						<Inspection {inspection} />
-					{/each}
-				</ul>
-			</div>
+			<ul class="flex flex-col items-center justify-center gap-6">
+				{#each business.inspections.slice(0, 4) as inspection}
+					<Inspection {inspection} />
+				{/each}
+			</ul>
 
-			<div class="flex w-full self-center items-center justify-center mb-8">
+			<div class="flex self-center items-center justify-center mb-8">
 				<button on:click={() => (showFour = false)} class="btn">Show All <ArrowDownToLine /></button
 				>
 			</div>
 		{:else}
-			<div class="flex items-center justify-center mb-8">
-				<ul class="flex flex-col items-center justify-center gap-6">
-					{#each business.inspections as inspection}
-						<Inspection {inspection} />
-					{/each}
-				</ul>
-			</div>
+			<ul class="flex flex-col items-center justify-center gap-6">
+				{#each business.inspections as inspection}
+					<Inspection {inspection} />
+				{/each}
+			</ul>
 		{/if}
 	</div>
 </div>

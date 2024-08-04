@@ -8,9 +8,6 @@
 		.reverse()
 		.filter((inspection) => inspection.type === 'Routine Inspection/Field Review')
 		.slice(-4);
-
-	const red = 'oklch(0.627955 0.257683 29.2339)';
-	const green = 'oklch(0.519752 0.176858 142.495)';
 </script>
 
 <div class="flex justify-center w-full">
@@ -24,7 +21,9 @@
 					{new Date(inspection.date).toLocaleDateString()}
 				</div>
 				<div class="timeline-middle">
-					<CircleCheck fill={inspection.result === 'Satisfactory' ? green : red} />
+					<CircleCheck
+						fillColorClass={inspection.result === 'Satisfactory' ? 'fill-success' : 'fill-error'}
+					/>
 				</div>
 				<div class="timeline-end timeline-box">
 					{inspection.result === 'Satisfactory' ? 'PASS' : 'FAIL'}
