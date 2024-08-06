@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from '$lib/utils';
 	import Dial from './icons/Dial.svelte';
 	import Pointer from './icons/Pointer.svelte';
 
@@ -18,9 +19,9 @@
 	}
 </script>
 
-<div class="relative w-fit">
+<div class="relative">
 	<Dial />
-	<div class={`w-full h-3/4 absolute bottom-0 ${calculateGradeClass(grade)}`}>
+	<div class={cn('absolute bottom-0 w-full h-3/4', calculateGradeClass(grade))}>
 		<Pointer />
 	</div>
 </div>

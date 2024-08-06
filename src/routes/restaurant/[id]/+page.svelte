@@ -4,6 +4,7 @@
 	import PointSummary from './PointSummary.svelte';
 	import Inspection from './Inspection.svelte';
 	import MetaTags from '$lib/components/MetaTags.svelte';
+	import { gradeToText } from '$lib/utils';
 	import { ArrowDownToLine, Phone, Share, MapPinned, Building2, ArrowLeft } from 'lucide-svelte';
 	import type { PageData } from './$types';
 
@@ -27,21 +28,6 @@
 			text: `Check out ${business.name} on Seattle Safe Eats!`,
 			url: window.location.href
 		});
-	}
-
-	function gradeToText(grade: string) {
-		switch (grade) {
-			case '1':
-				return 'Excellent';
-			case '2':
-				return 'Good';
-			case '3':
-				return 'Okay';
-			case '4':
-				return 'Needs to improve';
-			default:
-				return 'N/A';
-		}
 	}
 
 	const title = 'Seattle Safe Eats - ' + business.name;
@@ -74,10 +60,10 @@
 />
 
 <div
-	class="flex flex-col gap-8 w-full lg:w-3/4 xl:w-1/2 h-full mx-auto flex-grow pb-16 md:pt-16 px-4 md:px-0"
+	class="flex flex-col gap-8 w-full md:w-3/4 xl:w-1/2 h-full mx-auto flex-grow pb-16 md:pt-16 px-4 md:px-0"
 >
 	<div>
-		<div class="flex justify-between md:hidden">
+		<div class="flex justify-between md:pb-8">
 			<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
 				<ArrowLeft />
 			</button>
@@ -85,21 +71,23 @@
 				<Share />
 			</button>
 		</div>
-		<div class="flex flex-grow gap-4 items-center justify-between flex-row w-full max-h-40">
+		<div class="flex gap-4 items-center justify-evenly flex-row w-full h-48 overflow-hidden">
 			<GradeSummary grade={business.grade} />
-			<div class="flex flex-col w-full justify-between h-full">
-				<h1 class="text-4xl">{business.name}</h1>
-
-				<div class="flex flex-col justify-evenly w-full overflow-hidden h-full">
-					<span class="flex gap-2"
+			<div class="flex flex-col justify-between h-full overflow-hidden">
+				<h1 class="text-xl lg:text-4xl">{business.name}</h1>
+				<div class="flex flex-col justify-evenly h-full">
+					<span class="flex gap-2 truncate"
 						><Building2 class="text-accent" /> {business.city}, WA {business.zip_code}</span
 					>
-					<span class="flex gap-2"><MapPinned class="text-accent" />{business.address}</span>
-					<span class="flex gap-2"
-						><Phone class="text-accent" />{business.phone != undefined
-							? business.phone
-							: 'no phone #'}</span
+					<span class="flex gap-2 truncate"
+						><MapPinned class="text-accent" />{business.address}</span
 					>
+					{#if business.phone}
+						<span class="flex gap-2 truncate"
+							><Phone class="text-accent" />
+							{business.phone}
+						</span>
+					{/if}
 				</div>
 			</div>
 		</div>

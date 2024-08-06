@@ -4,7 +4,6 @@
 
 	import { Search } from 'lucide-svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
-	export let className: string | undefined = undefined;
 	let search = '';
 
 	function navigateSearch() {
@@ -17,14 +16,14 @@
 	class="sticky top-0 z-50 w-full border-b border-neutral-content/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
 >
 	<div class="container flex h-14 max-w-screen-2xl items-center w-full">
-		<div class="hidden md:flex">
-			<a href="/" class="mr-6 flex items-center space-x-2">
+		<div>
+			<a href="/" class="pr-2 md:pr-6 flex items-center">
 				<SpaceNeedle fill="currentColor" width="36" height="36" />
-				<span class="inline-block md:text-2xl"> Seattle Safe Eats </span>
+				<span class="hidden md:inline-block md:text-2xl"> Seattle Safe Eats </span>
 			</a>
 		</div>
-		<div class="flex flex-1 items-center justify-between md:justify-end space-x-2">
-			<form class={className} on:submit|preventDefault={navigateSearch} action=".">
+		<div class="flex flex-1 items-center justify-between md:justify-end">
+			<form class="w-full md:w-fit pr-2" on:submit|preventDefault={navigateSearch} action=".">
 				<label class="input input-bordered input-ghost flex items-center gap-2">
 					<input
 						type="search"

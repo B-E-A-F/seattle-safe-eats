@@ -11,11 +11,11 @@
 	export let withDial: boolean = false;
 </script>
 
-{#if grade === '1'}
-	<div class="flex font-bold justify-between">
+<div class="flex items-center gap-2 font-bold m-2">
+	{#if grade === '1'}
 		<div class="flex gap-2 items-center">
 			<img
-				class="rounded-full w-[50px]"
+				class="rounded-full w-16 mx-auto"
 				alt="Smiley face representing excellent rating"
 				src={excellent}
 			/>
@@ -28,15 +28,17 @@
 				<GradeDial {grade} />
 			</div>
 		{/if}
-	</div>
-	{#if withDescription}
-		The restaurant has had no or minor unsafe food handling practices over the last four
-		inspections.
-	{/if}
-{:else if grade === '2'}
-	<div class="flex font-bold justify-between">
+		{#if withDescription}
+			The restaurant has had no or minor unsafe food handling practices over the last four
+			inspections.
+		{/if}
+	{:else if grade === '2'}
 		<div class="flex gap-2 items-center">
-			<img class="rounded-full w-[50px]" alt="Smiley face representing good rating" src={good} />
+			<img
+				class="rounded-full w-16 mx-auto"
+				alt="Smiley face representing good rating"
+				src={good}
+			/>
 			{#if withLabel}
 				<span>Good</span>
 			{/if}
@@ -46,14 +48,16 @@
 				<GradeDial {grade} />
 			</div>
 		{/if}
-	</div>
-	{#if withDescription}
-		The restaurant has had a few unsafe food handling practices over the last four inspections.
-	{/if}
-{:else if grade === '3'}
-	<div class="flex font-bold justify-between">
+		{#if withDescription}
+			The restaurant has had a few unsafe food handling practices over the last four inspections.
+		{/if}
+	{:else if grade === '3'}
 		<div class="flex gap-2 items-center">
-			<img class="rounded-full w-[50px]" alt="Smiley face representing okay rating" src={okay} />
+			<img
+				class="rounded-full w-16 mx-auto"
+				alt="Smiley face representing okay rating"
+				src={okay}
+			/>
 			{#if withLabel}
 				<span>Okay</span>
 			{/if}
@@ -63,15 +67,13 @@
 				<GradeDial {grade} />
 			</div>
 		{/if}
-	</div>
-	{#if withDescription}
-		The restaurant has had several unsafe food handling practices over the last four inspections.
-	{/if}
-{:else if grade === '4'}
-	<div class="flex font-bold justify-between">
+		{#if withDescription}
+			The restaurant has had several unsafe food handling practices over the last four inspections.
+		{/if}
+	{:else if grade === '4'}
 		<div class="flex gap-2 items-center">
 			<img
-				class="rounded-full w-[50px]"
+				class="rounded-full w-16 mx-auto"
 				alt="Smiley face representing needs to improve rating"
 				src={needstoimprove}
 			/>
@@ -84,20 +86,18 @@
 				<GradeDial {grade} />
 			</div>
 		{/if}
-	</div>
-	{#if withDescription}
-		This restaurant was either closed by Public Health - Seattle & King County within the last year
-		or needed multiple return inspections to correct unsafe food handling practices.
-	{/if}
-{:else}
-	<div class="flex items-center gap-2 font-bold">
+		{#if withDescription}
+			This restaurant was either closed by Public Health - Seattle & King County within the last
+			year or needed multiple return inspections to correct unsafe food handling practices.
+		{/if}
+	{:else}
 		<div
-			class="bg-neutral text-neutral-content w-[50px] h-[50px] rounded-full text-xl font-semibold flex items-center justify-center"
+			class="bg-neutral text-neutral-content size-16 rounded-full text-xl font-semibold flex items-center justify-center"
 		>
 			N/A
 		</div>
 		{#if withLabel}
 			<span>No Grade Available</span>
 		{/if}
-	</div>
-{/if}
+	{/if}
+</div>
