@@ -1,10 +1,11 @@
 <script lang="ts">
-	import ThemeSelect from '$lib/components/ThemeSelect.svelte';
+	// import ThemeSelect from '$lib/components/ThemeSelect.svelte';
 	import Search from '$lib/components/Search.svelte';
 	import SpaceNeedle from '$lib/components/icons/SpaceNeedle.svelte';
 	import MetaTags from '$lib/components/MetaTags.svelte';
 	import SeattleSkyline from '$lib/assets/SeattleSkyline.svelte';
 	import Stars from '$lib/assets/Stars.svelte';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
 	const title = 'Seattle Safe Eats';
 	const description =
@@ -16,7 +17,7 @@
 
 <MetaTags {title} {description} {url} {image} {ogDescription} />
 
-<div class="top-0 right-8 fixed"><ThemeSelect /></div>
+<div class="top-2 right-4 fixed"><ThemeToggle /></div>
 <div class="flex flex-1 justify-center items-center flex-col gap-6">
 	<SpaceNeedle fill="currentColor" width="180" height="180" />
 	<h1 class="text-6xl text-center">Seattle<br />Safe{' '}Eats</h1>

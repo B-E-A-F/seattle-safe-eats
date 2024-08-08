@@ -22,7 +22,7 @@
 	// Toggle theme
 	const toggleTheme = () => {
 		theme.update((current) => {
-			const newTheme = current === 'cupcake' ? 'dracula' : 'cupcake';
+			const newTheme = current === 'cupcake' ? 'coffee' : 'cupcake';
 			saveTheme(newTheme);
 			return newTheme;
 		});
@@ -31,7 +31,7 @@
 	let isDarkTheme = false;
 
 	theme.subscribe((value) => {
-		isDarkTheme = value === 'dracula';
+		isDarkTheme = value === 'coffee';
 	});
 
 	onMount(() => {
