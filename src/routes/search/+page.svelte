@@ -69,11 +69,11 @@
 								<span class="flex gap-2">
 									<MapPinned class="text-accent" />{business.address}
 								</span>
-								<span class="flex gap-2">
-									<Phone class="text-accent" />{business.phone != undefined
-										? business.phone
-										: 'no phone #'}
-								</span>
+								{#if business.phone}
+									<span class="flex gap-2">
+										<Phone class="text-accent" />{business.phone}
+									</span>
+								{/if}
 							</div>
 						</div>
 					</a>
