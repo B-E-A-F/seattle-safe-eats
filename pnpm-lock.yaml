@@ -15,8 +15,8 @@ importers:
         specifier: ^2.5.10
         version: 2.5.10
       lucide-svelte:
-        specifier: ^0.424.0
-        version: 0.424.0(svelte@4.2.17)
+        specifier: ^0.427.0
+        version: 0.427.0(svelte@4.2.17)
       tailwind-merge:
         specifier: ^2.4.0
         version: 2.4.0
@@ -995,8 +995,8 @@ packages:
     resolution: {integrity: sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==}
     engines: {node: 14 || >=16.14}
 
-  lucide-svelte@0.424.0:
-    resolution: {integrity: sha512-mrEapPPlH5PWGMI0zs3dctR/6NylLx1VM9avRmH4OHN5aaldk4QYd/wTooROD4H6OKlC+7XOdgz0zX1tSxFlXw==}
+  lucide-svelte@0.427.0:
+    resolution: {integrity: sha512-l0IJqYVBTxMkJPvZqyIMyVFlbZ18Mjg0n6p7Zo9bSQNvsmeviTyOxYmYdp/G5gXcSHaOGL6YoQW7fmbFklbW/w==}
     peerDependencies:
       svelte: ^3 || ^4 || ^5.0.0-next.42
 
@@ -2418,7 +2418,7 @@ snapshots:
 
   lru-cache@10.2.2: {}
 
-  lucide-svelte@0.424.0(svelte@4.2.17):
+  lucide-svelte@0.427.0(svelte@4.2.17):
     dependencies:
       svelte: 4.2.17
 

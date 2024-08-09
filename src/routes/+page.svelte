@@ -1,11 +1,10 @@
 <script lang="ts">
-	// import ThemeSelect from '$lib/components/ThemeSelect.svelte';
 	import Search from '$lib/components/Search.svelte';
-	import SpaceNeedle from '$lib/components/icons/SpaceNeedle.svelte';
 	import MetaTags from '$lib/components/MetaTags.svelte';
-	import SeattleSkyline from '$lib/assets/SeattleSkyline.svelte';
 	import Stars from '$lib/assets/Stars.svelte';
+	import SeattleSkyline from '$lib/assets/SeattleSkyline.svelte';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import { SpaceNeedle } from '$lib/components/icons';
 
 	const title = 'Seattle Safe Eats';
 	const description =

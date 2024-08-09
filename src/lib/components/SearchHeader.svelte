@@ -1,8 +1,6 @@
 <script lang="ts">
-	import SpaceNeedle from '$lib/components/icons/SpaceNeedle.svelte';
-	// import MagnifyingGlass from '$lib/components/icons/MagnifyingGlass.svelte';
-
 	import { Search } from 'lucide-svelte';
+	import { SpaceNeedle } from '$lib/components/icons';
 	import ThemeToggle from './ThemeToggle.svelte';
 	let search = '';
 
@@ -32,7 +30,7 @@
 						bind:value={search}
 					/>
 					{#if search.length === 0}
-						<Search width="24" height="24" />
+						<Search size="24" />
 					{/if}
 				</label>
 			</form>

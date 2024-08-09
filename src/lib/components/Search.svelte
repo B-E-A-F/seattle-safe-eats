@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MagnifyingGlass from '$lib/components/icons/MagnifyingGlass.svelte';
+	import { Search } from 'lucide-svelte';
 
 	export let className: string | undefined = undefined;
 	let search = '';
@@ -14,7 +14,7 @@
 	<label class="input input-bordered border-2 flex items-center gap-2">
 		<input type="search" class="grow" placeholder="Search for a restaurant" bind:value={search} />
 		{#if search.length === 0}
-			<MagnifyingGlass width="24" height="24" />
+			<Search size="24" />
 		{/if}
 	</label>
 </form>

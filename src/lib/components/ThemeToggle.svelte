@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Moon, Sun } from 'lucide-svelte';
+	import { Sun, Moon } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 

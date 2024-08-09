@@ -79,6 +79,10 @@ export async function GET({ params }: { params: { query?: string } }) {
 			'https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT DISTINCT business_id, MAX(inspection_date) AS inspection_date GROUP BY business_id';
 	}
 
+	if (!env.APPLICATION_SECRET) {
+		throw new Error('APPLICATION_SECRET is not defined');
+	}
+
 	const headers: HeadersInit = new Headers();
 	headers.set('Content-Type', 'application/json');
 	headers.set('X-App-Token', env.APPLICATION_SECRET);
