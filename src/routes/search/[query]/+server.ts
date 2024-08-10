@@ -72,11 +72,15 @@ function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
 }
 
 /** @type {import('./$types').RequestHandler} */
-export async function GET({ params }) {
+export async function GET({ params }: { params: { query?: string } }) {
 	let dataUrl = `https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT * SEARCH '${decodeURI(params.query ?? '')}'`;
 	if (params.query === 'al') {
 		dataUrl =
 			'https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT DISTINCT business_id, MAX(inspection_date) AS inspection_date GROUP BY business_id';
+	}
+
+	if (!env.APPLICATION_SECRET) {
+		throw new Error('APPLICATION_SECRET is not defined');
 	}
 
 	const headers: HeadersInit = new Headers();

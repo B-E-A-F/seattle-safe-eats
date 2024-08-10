@@ -4,9 +4,16 @@ import daisyui from 'daisyui';
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	daisyui: {
-		themes: ['black']
+		themes: true
 	},
 	theme: {
+		container: {
+			center: true,
+			padding: '2rem',
+			screens: {
+				'2xl': '1400px'
+			}
+		},
 		extend: {}
 	},
 	plugins: [daisyui]

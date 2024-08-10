@@ -1,21 +1,17 @@
 <script>
 	import '../app.css';
+	import TailwindIndicator from '$lib/components/TailwindIndicator.svelte';
+	import { dev } from '$app/environment';
+	import SiteFooter from '$lib/components/SiteFooter.svelte';
 </script>
 
-<div class="flex flex-grow flex-col">
-	<div class="flex flex-grow">
+<div class="flex flex-grow flex-col relative z-10">
+	<div class="flex flex-grow w-full">
 		<slot />
 	</div>
-	<footer class="footer footer-center p-4 text-base-content border-t-2 border-t-base-200">
-		<aside class="flex">
-			<a href="https://www.telperion.io/" target="_blank"> Telperion Technologies LLC </a>
-			|
-			<a
-				href="https://data.kingcounty.gov/Health-Wellness/Food-Establishment-Inspection-Data/f29f-zza5/about_data"
-				target="_blank"
-			>
-				Data Source
-			</a>
-		</aside>
-	</footer>
+	<SiteFooter />
+
+	{#if dev}
+		<TailwindIndicator />
+	{/if}
 </div>

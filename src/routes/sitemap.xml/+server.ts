@@ -1,7 +1,7 @@
 import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentInspection.js';
 
 /** @type {import('./$types').RequestHandler} */
-export async function GET({ fetch }) {
+export async function GET({ fetch }: { fetch: typeof globalThis.fetch }) {
 	const res = await fetch(`/search/al`);
 	const inspections = (await res.json()) as FoodEstablishmentInspections;
 	console.log(
