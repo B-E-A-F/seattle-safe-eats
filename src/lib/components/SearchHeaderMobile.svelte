@@ -11,9 +11,9 @@
 </script>
 
 <header
-	class="sticky top-0 z-50 w-full border-b border-neutral-content/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+	class="sticky top-0 z-50 w-full overflow-hidden border-b border-neutral-content/30 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
 >
-	<div class="container flex h-14 items-center">
+	<div class="px-2 flex h-14 items-center">
 		<a href="/">
 			<SpaceNeedle fill="currentColor" width="36" height="36" />
 		</a>
