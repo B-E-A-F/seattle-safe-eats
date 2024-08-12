@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Search from '$lib/components/Search.svelte';
 	import MetaTags from '$lib/components/MetaTags.svelte';
-	import Stars from '$lib/assets/Stars.svelte';
 	import SeattleSkyline from '$lib/assets/SeattleSkyline.svelte';
+	import Stars from '$lib/assets/Stars.svelte';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { SpaceNeedle } from '$lib/components/icons';
 
@@ -16,20 +16,23 @@
 
 <MetaTags {title} {description} {url} {image} {ogDescription} />
 
-<div class="top-2 right-4 fixed"><ThemeToggle /></div>
-<div class="flex flex-1 justify-center items-center flex-col gap-6">
-	<SpaceNeedle fill="currentColor" width="180" height="180" />
-	<h1 class="text-6xl text-center">Seattle<br />Safe{' '}Eats</h1>
-	<div class="md:max-w-96 w-full px-8">
-		<Search />
+<div class="flex justify-center flex-col w-full h-full">
+	<div class="top-2 right-4 fixed"><ThemeToggle /></div>
+	<div class="flex mx-auto justify-center items-center flex-col gap-6">
+		<SpaceNeedle fill="currentColor" width="180" height="180" />
+		<h1 class="text-6xl text-center">Seattle<br />Safe{' '}Eats</h1>
+		<div class="md:max-w-96 w-full px-8">
+			<Search />
+		</div>
 	</div>
-</div>
-<div class="stars-container opacity-25">
-	<Stars svgGProps="fill-base-content" />
-</div>
-<div class="skyline-container opacity-25">
-	<SeattleSkyline svgGProps="fill-base-content" />
-	<div class="bg-base-content h-20" />
+	<div class="stars-container opacity-25">
+		<Stars svgGProps="fill-base-content" />
+	</div>
+	<div class="skyline-container opacity-25">
+		<SeattleSkyline svgGProps="fill-base-content" />
+		<!-- negative margin because the bottom of the skyline has a gap that we are covering --->
+		<div class="bg-base-content h-20 -mt-1" />
+	</div>
 </div>
 
 <style>

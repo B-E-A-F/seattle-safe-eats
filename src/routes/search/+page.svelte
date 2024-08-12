@@ -64,11 +64,11 @@
 							<div class="flex flex-col justify-evenly w-1/2 overflow-hidden h-full">
 								<span class="flex gap-2">
 									<Building2 class="text-accent" />
-									{business.city}, WA {business.zip_code}
+									{business.city}, WA
 								</span>
-								<span class="flex gap-2">
-									<MapPinned class="text-accent" />{business.address}
-								</span>
+								<div class="flex gap-2">
+									<MapPinned class="text-accent" /><span class="truncate">{business.address}></span>
+								</div>
 								{#if business.phone}
 									<span class="flex gap-2">
 										<Phone class="text-accent" />{business.phone}

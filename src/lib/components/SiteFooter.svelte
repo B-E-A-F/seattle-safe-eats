@@ -1,4 +1,4 @@
-<footer class="footer footer-center p-4 border-t-2 border-primary-content/30">
+<footer class="footer footer-center p-4 border-t-2 border-primary-content/30 bottom-0">
 	<aside class="flex">
 		<a href="https://www.telperion.io/" target="_blank"> Telperion Technologies LLC </a>
 		|
