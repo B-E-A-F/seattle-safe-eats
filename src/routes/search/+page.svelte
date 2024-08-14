@@ -32,13 +32,13 @@
 />
 
 {#if data.businesses.length === 0}
-	<div class="flex flex-1 flex-col items-center justify-center gap-4 md:text-2xl">
+	<div class="flex flex-col items-center justify-center gap-4 md:text-2xl">
 		<p class="px-8 text-center">No results found</p>
 		<Grade grade="4" />
 	</div>
 {:else}
 	<ul
-		class="w-full lg:w-3/4 xl:w-1/2 h-full flex flex-col gap-8 items-center py-4 max-w-4xl justify-center mx-auto px-4"
+		class="w-full lg:w-3/4 xl:w-1/2 h-full flex flex-col gap-4 items-center max-w-4xl justify-center mx-auto py-4 px-2"
 	>
 		<li>
 			<div class="form-control">
@@ -50,25 +50,27 @@
 		</li>
 		{#each data.businesses as business}
 			{#if business.grade !== undefined || showNoGrade}
-				<li class="card bg-base-100 py-4 w-full shadow-lg border border-base-content/20">
+				<li
+					class="card bg-base-100 py-4 shadow-lg border border-base-content/20 w-full overflow-hidden"
+				>
 					<a
 						class="flex flex-col gap-4 w-full h-full p-2 justify-evenly"
 						href={`/restaurant/${business.business_id}`}
 					>
-						<span class="font-bold text-xl truncate mx-auto">{business.name}</span>
+						<span class="font-bold text-xl truncate mx-auto px-2">{business.name}</span>
 						<div class="flex w-full">
 							<div class="flex flex-col items-center justify-center w-1/2">
 								<Grade grade={business.grade} />
 								<span class="text-center">{gradeToText(business.grade)}</span>
 							</div>
-							<div class="flex flex-col justify-evenly w-1/2 overflow-hidden h-full">
+							<div class="flex flex-col justify-evenly w-full md:w-1/2 overflow-hidden h-fill">
 								<span class="flex gap-2">
 									<Building2 class="text-accent" />
-									{business.city}, WA {business.zip_code}
+									{business.city}, WA
 								</span>
-								<span class="flex gap-2">
-									<MapPinned class="text-accent" />{business.address}
-								</span>
+								<div class="flex gap-2">
+									<MapPinned class="text-accent" /><span class="truncate">{business.address}</span>
+								</div>
 								{#if business.phone}
 									<span class="flex gap-2">
 										<Phone class="text-accent" />{business.phone}

@@ -5,8 +5,8 @@
 	import SiteFooter from '$lib/components/SiteFooter.svelte';
 </script>
 
-<div class="flex flex-grow flex-col relative z-10">
-	<div class="flex flex-grow w-full">
+<div class="bg-background relative flex min-h-screen flex-col w-full">
+	<div class="flex-1">
 		<slot />
 	</div>
 	<SiteFooter />
