@@ -2,13 +2,6 @@ import { json } from '@sveltejs/kit';
 import _ from 'underscore';
 import { env } from '$env/dynamic/private';
 import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentInspection.js';
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
-TimeAgo.setDefaultLocale(en.locale);
-TimeAgo.addLocale(en);
-
-// Create formatter (English).
-const timeAgo = new TimeAgo('en-US');
 
 export type Business = {
 	business_id: string;
@@ -18,57 +11,32 @@ export type Business = {
 	name: string;
 	phone: string;
 	program_identifier: string;
-	last_inspection: string;
-	last_violation: string;
 };
 
-function toTitleCase(str?: string) {
-	if (!str) return '';
+function toTitleCase(str: string) {
 	return str
 		.split(' ')
 		.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
 		.join(' ');
 }
 
-function adaptDataToBusinesses(data: FoodEstablishmentInspections): Business[] {
-	return (
-		_.chain(data)
-			// Step 1: Group by business ID
-			.groupBy('business_id')
-			// Step 2: Iterate over each group
-			.map((group) => {
-				// Step 3: Sort each group by inspection date in descending order
-				const sortedGroup = _.sortBy(group, 'inspection_date').reverse();
-				// Step 4: Get the latest inspection
-				const latestInspection = _.first(sortedGroup);
-				// Step 5: Filter out records with violation points greater than 0
-				const violations = _.filter(
-					sortedGroup,
-					(inspection) => parseInt(inspection.violation_points) > 0
-				);
-				// Step 6: Sort violations by inspection date in descending order
-				const sortedViolations = _.sortBy(violations, 'inspection_date').reverse();
-				// Step 7: Get the latest violation
-				const latestViolation = _.first(sortedViolations);
-				// Return the transformed data
-				return {
-					business_id: latestInspection?.business_id,
-					address: latestInspection?.address,
-					city: toTitleCase(latestInspection?.city),
-					grade: latestInspection?.grade,
-					name: toTitleCase(latestInspection?.program_identifier),
-					phone: latestInspection?.phone,
-					program_identifier: latestInspection?.program_identifier,
-					last_inspection: latestInspection?.inspection_date
-						? timeAgo.format(new Date(latestInspection.inspection_date))
-						: undefined,
-					last_violation: latestViolation
-						? timeAgo.format(new Date(latestViolation.inspection_date))
-						: undefined
-				} as Business;
-			})
-			.value()
-	);
+function adaptDataToBusinesses(data: FoodEstablishmentInspections) {
+	// There will be more than one business on a search query
+	// Group the array by each business so we get {bus_id2: [inspection1, inspection2], bus_id2: [inspection1, inspection2]]}
+	const groupedData = _.groupBy(data, 'business_id');
+
+	return Object.values(groupedData).map((group) => {
+		if (group.length === 0) return [];
+		return {
+			business_id: group[0].business_id,
+			address: group[0].address,
+			city: toTitleCase(group[0].city),
+			grade: group[0].grade,
+			name: toTitleCase(group[0].program_identifier),
+			phone: group[0].phone,
+			program_identifier: group[0].program_identifier
+		};
+	});
 }
 
 /** @type {import('./$types').RequestHandler} */
