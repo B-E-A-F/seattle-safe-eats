@@ -31,7 +31,7 @@ export type Business = {
 	program_identifier: string;
 	inspections: Inspection[];
 	zip_code: string;
-	latest_inspection: Inspection;
+	latest_inspection?: Inspection;
 	risk_category: string | undefined;
 };
 
@@ -48,18 +48,20 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 	// Create a map to collect inspections with their respective violations
 	const inspectionsMap = new Map<string, Inspection>();
 
-	data.forEach((item) => {
-		if (!item.inspection_type.includes('Routine')) return;
+	for (const item of data) {
+		if (!item.inspection_date) continue;
+		if (item.inspection_type && !item.inspection_type.includes('Routine')) continue;
+
 		// If the inspection date is not already in the map, create a new inspection entry
 		if (!inspectionsMap.has(item.inspection_date)) {
 			inspectionsMap.set(item.inspection_date, {
-				business_name: item.inspection_business_name,
-				closed_business: item.inspection_closed_business,
+				business_name: item.inspection_business_name ?? '',
+				closed_business: item.inspection_closed_business ?? false,
 				date: item.inspection_date,
-				result: item.inspection_result,
-				score: item.inspection_score,
-				serial_num: item.inspection_serial_num,
-				type: item.inspection_type,
+				result: item.inspection_result ?? '',
+				score: item.inspection_score ?? '',
+				serial_num: item.inspection_serial_num ?? '',
+				type: item.inspection_type ?? '',
 				violations: []
 			});
 		}
@@ -89,12 +91,13 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 			};
 			inspectionsMap.get(item.inspection_date)?.violations.push(violation);
 		}
-	});
-
+	}
+	console.log(inspectionsMap);
 	// Convert the inspections map to an array
 	const inspections = Array.from(inspectionsMap.values());
 
-	const latest_inspection = inspections.reduce((a, b) => (a.date > b.date ? a : b));
+	const latest_inspection =
+		inspections.length > 0 ? inspections.reduce((a, b) => (a.date > b.date ? a : b)) : undefined;
 
 	// The risk category is separated by " - " in the business description
 	const risk_category = businessData.description.split(' - ')[1] ?? undefined;
