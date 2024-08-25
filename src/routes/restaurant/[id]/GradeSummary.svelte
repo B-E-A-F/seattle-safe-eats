@@ -34,5 +34,12 @@
 			<div class="divider my-2" />
 			<GradeDescription {grade} />
 		</div>
+		<div class="flex items-center justify-center pt-4">
+			<a
+				class="link"
+				href="https://kingcounty.gov/en/dept/dph/health-safety/food-safety/inspection-rating-system/rating-system"
+				target="_blank">What do these mean?</a
+			>
+		</div>
 	</div>
 </dialog>
