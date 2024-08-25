@@ -38,7 +38,7 @@
 			<a
 				class="link"
 				href="https://kingcounty.gov/en/dept/dph/health-safety/food-safety/inspection-rating-system/rating-system"
-				target="_blank">What do these mean?</a
+				target="_blank">What does this mean?</a
 			>
 		</div>
 	</div>
