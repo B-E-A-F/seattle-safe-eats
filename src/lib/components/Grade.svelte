@@ -1,8 +1,4 @@
 <script lang="ts">
-	import excellent from '$lib/assets/excellent.png';
-	import good from '$lib/assets/good.png';
-	import okay from '$lib/assets/okay.png';
-	import needstoimprove from '$lib/assets/needstoimprove.png';
 	import GradeDial from './GradeDial.svelte';
 
 	export let grade: string | undefined;
@@ -17,7 +13,7 @@
 			<img
 				class="rounded-full w-16 mx-auto"
 				alt="Smiley face representing excellent rating"
-				src={excellent}
+				src={'https://pub-b8e099feb55c4c2798b6a2442f0c9f20.r2.dev/excellent.png'}
 			/>
 			{#if withLabel}
 				<span>Excellent</span>
@@ -37,7 +33,7 @@
 			<img
 				class="rounded-full w-16 mx-auto"
 				alt="Smiley face representing good rating"
-				src={good}
+				src={'https://pub-b8e099feb55c4c2798b6a2442f0c9f20.r2.dev/good.png'}
 			/>
 			{#if withLabel}
 				<span>Good</span>
@@ -56,7 +52,7 @@
 			<img
 				class="rounded-full w-16 mx-auto"
 				alt="Smiley face representing okay rating"
-				src={okay}
+				src={'https://pub-b8e099feb55c4c2798b6a2442f0c9f20.r2.dev/okay.png'}
 			/>
 			{#if withLabel}
 				<span>Okay</span>
@@ -75,7 +71,7 @@
 			<img
 				class="rounded-full w-16 mx-auto"
 				alt="Smiley face representing needs to improve rating"
-				src={needstoimprove}
+				src={'https://pub-b8e099feb55c4c2798b6a2442f0c9f20.r2.dev/needstoimprove.png'}
 			/>
 			{#if withLabel}
 				<span>Needs To Improve</span>
