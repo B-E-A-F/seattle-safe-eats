@@ -1,3 +1,7 @@
+<script>
+	import Github from '$lib/components/icons/Github.svelte';
+</script>
+
 <footer class="footer footer-center p-4 border-t-2 border-base-content/20 bottom-0">
 	<aside class="flex">
 		<a href="https://www.telperion.io/" target="_blank"> Telperion Technologies LLC </a>
@@ -7,6 +11,10 @@
 			target="_blank"
 		>
 			Data Source
+		</a>
+		|
+		<a href="https://github.com/archerscript/sea-safe-eats" target="_blank">
+			<Github />
 		</a>
 	</aside>
 </footer>
