@@ -16,7 +16,11 @@
 	<Grade {grade} />
 	{#if grade}
 		<GradeDial {grade} />
-		<span class="text-xl">{gradeToText(grade)}</span>
+		{#if grade === '4'}
+			<span class="text-md">{gradeToText(grade)}</span>
+		{:else}
+			<span class="text-xl">{gradeToText(grade)}</span>
+		{/if}
 	{/if}
 </button>
 
