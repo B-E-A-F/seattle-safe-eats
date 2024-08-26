@@ -20,8 +20,10 @@ Update your APPLICATION_SECRET with the app token you just generated
 
 ### Install dependencies
 
+Install [pnpm](https://pnpm.io/)
+
 ```bash
-npm install
+pnpm install
 ```
 
 ### Run the project
