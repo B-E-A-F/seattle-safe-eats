@@ -35,7 +35,7 @@
 		business.name +
 		' food safety inspections and violations in Seattle. Get detailed insights into our safety ratings, inspection dates, and violations to make informed dining decisions.';
 	const url = 'https://www.seattlesafeeats.com/restaurant/' + business.business_id;
-	const image = `https://www.seattlesafeeats.com/og-${business.grade}.png?version=${business.latest_inspection?.date ?? new Date().toLocaleDateString()}`;
+	const image = `https://pub-b8e099feb55c4c2798b6a2442f0c9f20.r2.dev/og-${business.grade}.png?version=${business.latest_inspection?.date ?? new Date().toLocaleDateString()}`;
 	const ogTitle = `Seattle Safe Eats | ${business.name}`;
 	const ogDescription = (grade: string, name: string) => {
 		switch (grade) {

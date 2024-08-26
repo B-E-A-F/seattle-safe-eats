@@ -4,12 +4,7 @@ import type { FoodEstablishmentInspections } from '$lib/types/FoodEstablishmentI
 export async function GET({ fetch }: { fetch: typeof globalThis.fetch }) {
 	const res = await fetch(`/search/al`);
 	const inspections = (await res.json()) as FoodEstablishmentInspections;
-	console.log(
-		inspections.map(
-			({ business_id, inspection_date }) =>
-				`<url><loc>https://www.seattlesafeeats.com/restaurant/${business_id}</loc><lastmod>${inspection_date ?? new Date().toLocaleDateString()}</lastmod></url>`
-		)[0]
-	);
+
 	return new Response(
 		`
 		<?xml version="1.0" encoding="UTF-8" ?>

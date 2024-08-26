@@ -10,7 +10,7 @@
 	const description =
 		"Explore Seattle's restaurant food safety inspections with ease. Get detailed insights into violations, inspection dates, and safety ratings to make informed dining decisions.";
 	const url = 'https://www.seattlesafeeats.com/';
-	const image = `https://www.seattlesafeeats.com/og-undefined.png?version=${new Date().toLocaleDateString()}`;
+	const image = `https://pub-b8e099feb55c4c2798b6a2442f0c9f20.r2.dev/og-undefined.png?version=${new Date().toLocaleDateString()}`;
 	const ogDescription = "Explore Seattle's restaurant food safety inspections with ease";
 </script>
 

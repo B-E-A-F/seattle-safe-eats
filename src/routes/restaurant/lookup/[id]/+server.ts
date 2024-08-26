@@ -92,7 +92,6 @@ function adaptDataToBusiness(data: FoodEstablishmentInspections): Business {
 			inspectionsMap.get(item.inspection_date)?.violations.push(violation);
 		}
 	}
-	console.log(inspectionsMap);
 	// Convert the inspections map to an array
 	const inspections = Array.from(inspectionsMap.values());
 
