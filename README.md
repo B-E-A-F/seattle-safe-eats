@@ -1,5 +1,9 @@
 # Seattle Safe Eats 🍔
 
+Seattle Safe Eats is a [svelte-kit](https://kit.svelte.dev/) project that was designed to easily navigate food safety rating inspections for King County.
+
+![image](https://github.com/user-attachments/assets/4e867f99-cabb-4e42-9f74-f8d296686c72)
+
 ## Getting Started
 
 ### Get a Socrata Open Data app token
@@ -25,3 +29,7 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Contributing
+
+Fork the project, grab an issue, create a PR 😁
