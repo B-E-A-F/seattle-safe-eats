@@ -6,7 +6,7 @@ Seattle Safe Eats is a [svelte-kit](https://kit.svelte.dev/) project that was de
 
 ## Getting Started
 
-### Get a Socrata Open Data app token
+### Generate a Socrata Open Data app token
 
 [King County Socrata Open Data](https://dev.socrata.com/foundry/data.kingcounty.gov/f29f-zza5)
 
@@ -29,7 +29,7 @@ pnpm install
 ### Run the project
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## Contributing
