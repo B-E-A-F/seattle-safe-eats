@@ -19,3 +19,10 @@ export function gradeToText(grade: string) {
 			return 'N/A';
 	}
 }
+
+export function restaurauntNameToUrl(name: string, id: string) {
+	return `${name
+		.toLowerCase()
+		.replace(/[^a-zA-Z0-9 ]/g, '')
+		.replace(/\s+/g, '-')}-${id.substring(2)}`;
+}

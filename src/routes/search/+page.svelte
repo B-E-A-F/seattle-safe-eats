@@ -3,6 +3,7 @@
 	import type { PageData } from './$types';
 	import MetaTags from '$lib/components/MetaTags.svelte';
 	import { Phone, Building2, MapPinned } from 'lucide-svelte';
+	import { restaurauntNameToUrl } from '$lib/utils';
 
 	export let data: PageData;
 	let showNoGrade = false;
@@ -55,7 +56,7 @@
 				>
 					<a
 						class="flex flex-col gap-4 w-full h-full p-2 justify-evenly"
-						href={`/restaurant/${business.business_id}`}
+						href={`/restaurant/${restaurauntNameToUrl(business.name, business.business_id)}`}
 					>
 						<span class="font-bold text-xl truncate mx-auto px-2">{business.name}</span>
 						<div class="flex w-full">
