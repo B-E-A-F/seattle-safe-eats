@@ -44,7 +44,7 @@ export async function GET({ params }: { params: { query?: string } }) {
 	let dataUrl = `https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT * SEARCH '${decodeURI(params.query ?? '')}'`;
 	if (params.query === 'al') {
 		dataUrl =
-			'https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT DISTINCT business_id, MAX(inspection_date) AS inspection_date GROUP BY business_id';
+			'https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT DISTINCT business_id, program_identifier, MAX(inspection_date) AS inspection_date GROUP BY business_id, program_identifier';
 	}
 
 	if (!env.APPLICATION_SECRET) {

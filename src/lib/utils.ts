@@ -21,6 +21,7 @@ export function gradeToText(grade: string) {
 }
 
 export function restaurauntNameToUrl(name: string, id: string) {
+	if (!name) return;
 	return `${name
 		.toLowerCase()
 		.replace(/[^a-zA-Z0-9 ]/g, '')
