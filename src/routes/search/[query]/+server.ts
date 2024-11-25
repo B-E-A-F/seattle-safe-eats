@@ -44,7 +44,7 @@ export async function GET({ params }: { params: { query?: string } }) {
 	let dataUrl = `https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT * SEARCH '${decodeURI(params.query ?? '')}'`;
 	if (params.query === 'al') {
 		dataUrl =
-			'https://data.kingcounty.gov/resource/f29f-zza5.json?$query=SELECT DISTINCT business_id, program_identifier, MAX(inspection_date) AS inspection_date GROUP BY business_id, program_identifier';
+			'https://data.kingcounty.gov/resource/f29f-zza5.json?$limit=200000&$order=business_id';
 	}
 
 	if (!env.APPLICATION_SECRET) {
@@ -63,9 +63,10 @@ export async function GET({ params }: { params: { query?: string } }) {
 	const response = await fetch(dataUrl, options);
 
 	const inspectionData = (await response.json()) as FoodEstablishmentInspections;
+	const uniqueInspections = _.uniq(inspectionData, (inspection) => inspection.program_identifier);
 
 	if (params.query === 'al') {
-		return json(inspectionData);
+		return json(uniqueInspections);
 	}
 
 	return json({
