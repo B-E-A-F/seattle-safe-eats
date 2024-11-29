@@ -33,8 +33,8 @@
 />
 
 {#if data.businesses.length === 0}
-	<div class="flex flex-col items-center justify-center gap-4 md:text-2xl">
-		<p class="px-8 text-center">No results found</p>
+	<div class="flex flex-col items-center justify-center md:text-2xl">
+		<p class="p-8 text-center">No results found</p>
 		<Grade grade="4" />
 	</div>
 {:else}
