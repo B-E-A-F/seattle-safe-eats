@@ -38,14 +38,16 @@
 	const image = `https://pub-b8e099feb55c4c2798b6a2442f0c9f20.r2.dev/og-${business.grade}.png?version=${business.latest_inspection?.date ?? new Date().toLocaleDateString()}`;
 	const ogTitle = `Seattle Safe Eats | ${business.name}`;
 	const ogDescription = (grade: string, name: string) => {
+		const possessiveName = name.endsWith('s') ? `${name}'` : `${name}'s`;
+
 		switch (grade) {
 			case '1':
 			case '2':
 			case '3':
 			case '4':
-				return `Check out ${name}'s "${gradeToText(grade)}" food safety rating on Seattle Safe Eats`;
+				return `Check out ${possessiveName} "${gradeToText(grade)}" food safety rating on Seattle Safe Eats`;
 			default:
-				return `Check out ${name}'s food safety rating on Seattle Safe Eats`;
+				return `Check out ${possessiveName} food safety rating on Seattle Safe Eats`;
 		}
 	};
 </script>
