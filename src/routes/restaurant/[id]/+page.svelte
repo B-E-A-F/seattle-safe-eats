@@ -95,12 +95,12 @@
 		</div>
 	</div>
 
-	{#if !(business.inspections.length === 1 && business.inspections[0].violations.length === 0)}
+	{#if business.inspections.length > 0}
 		<div class="pt-4"><PointSummary inspections={business.inspections} /></div>
 	{/if}
 	<Timeline inspections={business.inspections} />
 	<div class="flex w-full self-center divider">Inspections</div>
-	{#if business.inspections.length === 1 && business.inspections[0].violations.length === 0}
+	{#if business.inspections.length === 0}
 		<div class="flex flex-grow flex-col items-center justify-center gap-4">
 			<p class="text-center">
 				This restaurant has not received any inspections, or none could be found
