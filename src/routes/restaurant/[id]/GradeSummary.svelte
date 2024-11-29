@@ -12,7 +12,10 @@
 </script>
 
 <!-- The Display on the Restaurant Page -->
-<button class="flex flex-col items-center gap-3 card w-32" on:click={() => dialog.showModal()}>
+<button
+	class="flex flex-col items-center gap-3 card w-40 min-w-40 border border-base-content/20 p-2"
+	on:click={() => dialog.showModal()}
+>
 	<Grade {grade} />
 	{#if grade}
 		<GradeDial {grade} />

@@ -71,17 +71,19 @@
 				<Share />
 			</button>
 		</div>
-		<div class="flex gap-4 items-center justify-evenly flex-row w-full h-48 overflow-hidden">
+		<div class="flex gap-4 items-center justify-evenly flex-row w-full overflow-hidden">
 			<GradeSummary grade={business.grade} />
-			<div class="flex flex-col justify-between h-full overflow-hidden">
+			<div class="flex flex-col justify-between h-full gap-4">
 				<h1 class="text-xl lg:text-4xl">{business.name}</h1>
-				<div class="flex flex-col justify-evenly h-full">
-					<span class="flex gap-2 truncate"
-						><Building2 class="text-accent" /> {business.city}, WA {business.zip_code}</span
-					>
-					<span class="flex gap-2 truncate"
-						><MapPinned class="text-accent" />{business.address}</span
-					>
+				<div class="flex flex-col justify-evenly h-full gap-4">
+					<span class="flex gap-2 truncate">
+						<Building2 class="text-accent" />
+						{business.city}, WA {business.zip_code}
+					</span>
+					<span class="flex gap-2 truncate">
+						<MapPinned class="text-accent w-6" />
+						{business.address}
+					</span>
 					{#if business.phone}
 						<span class="flex gap-2 truncate"
 							><Phone class="text-accent" />
