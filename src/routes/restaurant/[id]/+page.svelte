@@ -7,6 +7,7 @@
 	import { gradeToText } from '$lib/utils';
 	import { ArrowDownToLine, Phone, Share, MapPinned, Building2, ArrowLeft } from 'lucide-svelte';
 	import type { PageData } from './$types';
+	import Alert from '$lib/components/Alert.svelte';
 
 	export let data: PageData;
 	const { business } = data;
@@ -62,6 +63,10 @@
 <div
 	class="flex flex-col gap-8 w-full md:w-3/4 xl:w-1/2 h-full mx-auto flex-grow pb-16 md:pt-16 px-4 md:px-0"
 >
+	<div class="pt-4 lg:pt-0">
+		<Alert riskLevel={business.risk_category} lastInspection={business.latest_inspection} />
+	</div>
+
 	<div>
 		<div class="flex justify-between md:pb-8">
 			<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
