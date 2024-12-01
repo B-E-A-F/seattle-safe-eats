@@ -47,7 +47,7 @@
 				/>
 			</svg>
 			<span>
-				<span class="font-semibold">Warning:</span>
+				<span class="font-semibold">Caution:</span>
 				This restaurant has failed their last inspection, and is a high risk restaurant.
 				<a
 					href="https://kingcounty.gov/en/dept/dph/health-safety/food-safety/inspection-rating-system/rating-system#:~:text=Category%20definitions"
