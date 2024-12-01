@@ -63,13 +63,11 @@
 <div
 	class="flex flex-col gap-8 w-full md:w-3/4 xl:w-1/2 h-full mx-auto flex-grow pb-16 md:pt-16 px-4 md:px-0"
 >
-	<div class="pt-4 lg:pt-0">
-		<Alert riskLevel={business.risk_category} lastInspection={business.latest_inspection} />
-	</div>
+	<Alert riskLevel={business.risk_category} lastInspection={business.latest_inspection} />
 
 	<div>
 		<div class="flex justify-between md:pb-8">
-			<button class="btn btn-ghost" on:click={navigateBack} disabled={backDisabled}>
+			<button class="btn btn-ghost pl-0" on:click={navigateBack} disabled={backDisabled}>
 				<ArrowLeft />
 			</button>
 			<button class="btn btn-ghost" on:click={shareLink}>

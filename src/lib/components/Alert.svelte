@@ -31,65 +31,67 @@
 </script>
 
 {#if show}
-	{#if error}
-		<div role="alert" class="alert alert-error">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-6 w-6 shrink-0 stroke-current"
-				fill="none"
-				viewBox="0 0 24 24"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-				/>
-			</svg>
-			<span>
-				<span class="font-semibold">Caution:</span>
-				This restaurant has failed their last inspection, and is a high risk restaurant.
-				<a
-					href="https://kingcounty.gov/en/dept/dph/health-safety/food-safety/inspection-rating-system/rating-system#:~:text=Category%20definitions"
-					target="_blank"
-					class="link"
+	<div class="pt-4 lg:pt-0">
+		{#if error}
+			<div role="alert" class="alert alert-error">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-6 w-6 shrink-0 stroke-current"
+					fill="none"
+					viewBox="0 0 24 24"
 				>
-					Learn more
-				</a>
-			</span>
-			<div>
-				<button class="btn btn-sm" on:click={() => (show = false)}>Confirm</button>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+					/>
+				</svg>
+				<span>
+					<span class="font-semibold">Caution:</span>
+					This restaurant has failed their last inspection, and is a high risk restaurant.
+					<a
+						href="https://kingcounty.gov/en/dept/dph/health-safety/food-safety/inspection-rating-system/rating-system#:~:text=Category%20definitions"
+						target="_blank"
+						class="link"
+					>
+						Learn more
+					</a>
+				</span>
+				<div>
+					<button class="btn btn-sm" on:click={() => (show = false)}>Confirm</button>
+				</div>
 			</div>
-		</div>
-	{:else}
-		<div role="alert" class="alert alert-warning">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="h-6 w-6 shrink-0 stroke-current"
-				fill="none"
-				viewBox="0 0 24 24"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-				/>
-			</svg>
-			<span>
-				<span class="font-semibold">Warning</span>: This restaurant has not received an inspection
-				in the last 6 months and is a high risk restaurant.
-				<a
-					href="https://kingcounty.gov/en/dept/dph/health-safety/food-safety/inspection-rating-system/rating-system#:~:text=Category%20definitions"
-					class="link"
-					target="_blank"
+		{:else}
+			<div role="alert" class="alert alert-warning">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-6 w-6 shrink-0 stroke-current"
+					fill="none"
+					viewBox="0 0 24 24"
 				>
-					Learn more
-				</a>
-			</span>
-			<div>
-				<button class="btn btn-sm" on:click={() => (show = false)}>Confirm</button>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+					/>
+				</svg>
+				<span>
+					<span class="font-semibold">Warning</span>: This restaurant has not received an inspection
+					in the last 6 months and is a high risk restaurant.
+					<a
+						href="https://kingcounty.gov/en/dept/dph/health-safety/food-safety/inspection-rating-system/rating-system#:~:text=Category%20definitions"
+						class="link"
+						target="_blank"
+					>
+						Learn more
+					</a>
+				</span>
+				<div>
+					<button class="btn btn-sm" on:click={() => (show = false)}>Confirm</button>
+				</div>
 			</div>
-		</div>
-	{/if}
+		{/if}
+	</div>
 {/if}
