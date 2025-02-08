@@ -23,8 +23,7 @@
 			error = true;
 		}
 
-		if (new Date(lastInspection.date) < new Date(Date.now() - 6 * 30 * 24 * 60 * 60 * 1000)) {
-			console.log('should hit');
+		if (new Date(lastInspection.dsate) < new Date(Date.now() - 6 * 30 * 24 * 60 * 60 * 1000)) {
 			show = true;
 		}
 	}
